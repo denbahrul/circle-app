@@ -1,8 +1,11 @@
+import { Box, Heading, Text } from "@chakra-ui/react";
+
 function App() {
   return (
-    <>
-      <p>Welcome</p>
-    </>
+    <Box>
+      <Heading>Oke</Heading>
+      <Text color={"brand.oke"}>Welcome</Text>
+    </Box>
   );
 }
 

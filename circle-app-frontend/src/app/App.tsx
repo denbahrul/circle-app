@@ -1,12 +1,8 @@
-import { Box, Heading, Text } from "@chakra-ui/react";
+import LoginForm from "../features/auth/components/login-form";
+import Login from "./pages/auth/login";
 
 function App() {
-  return (
-    <Box>
-      <Heading>Oke</Heading>
-      <Text color={"brand.oke"}>Welcome</Text>
-    </Box>
-  );
+  return <Login />;
 }
 
 export default App;

@@ -1,12 +1,7 @@
-import { Box, Heading, Text } from "@chakra-ui/react";
+import RouterApp from "./router";
 
 function App() {
-  return (
-    <Box>
-      <Heading>Oke</Heading>
-      <Text color={"brand.oke"}>Welcome</Text>
-    </Box>
-  );
+  return <RouterApp />;
 }
 
 export default App;

@@ -1,8 +1,7 @@
-import LoginForm from "../features/auth/components/login-form";
-import Login from "./pages/auth/login";
+import RouterApp from "./router";
 
 function App() {
-  return <Login />;
+  return <RouterApp />;
 }
 
 export default App;

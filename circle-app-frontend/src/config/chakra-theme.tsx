@@ -4,7 +4,9 @@ const themeConfig: ThemeOverride = {
   colors: {
     brand: {
       green: "#04A51E",
+      "green-dark": "#005E0E",
       background: "#1D1D1D",
+      borderAbu: "#545454",
     },
   },
   fonts: {
@@ -21,6 +23,11 @@ const themeConfig: ThemeOverride = {
     Button: {
       baseStyle: {
         rounded: "full",
+      },
+    },
+    Input: {
+      variants: {
+        base: {},
       },
     },
   },

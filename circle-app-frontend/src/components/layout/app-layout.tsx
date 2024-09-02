@@ -4,9 +4,9 @@ import LeftBar from "./left-bar";
 
 export default function AppLayout({ children }: { children: React.ReactNode }) {
   return (
-    <Box display={"flex"} justifyContent={"space-between"}>
+    <Box maxWidth={"1728px"} margin={"auto"} display={"flex"} justifyContent={"space-between"}>
       <LeftBar />
-      {children}
+      <Box width={"748px"}>{children}</Box>
       <RightBar />
     </Box>
   );

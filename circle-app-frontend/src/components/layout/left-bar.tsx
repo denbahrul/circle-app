@@ -4,7 +4,7 @@ import ItemMenu from "../ui/item-menu";
 export default function LeftBar() {
   return (
     <Box width={"417px"}>
-      <Flex position={"fixed"} width={"417px"} direction={"column"} borderRight={"solid 1px"} borderColor={"brand.borderAbu"} height={"100vh"} padding={8}>
+      <Flex direction={"column"} borderRight={"solid 1px"} borderColor={"brand.borderAbu"} height={"100vh"} padding={8}>
         <Box marginBottom={6}>
           <Image h={50} src="./logo.svg" alt="circle logo" />
         </Box>

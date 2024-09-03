@@ -30,7 +30,7 @@ export default function PostItem({ image, fullName, userName, postImage }: Post)
           Kalian pernah ga sih bet on saving? Jadi by calculation sebenernya kita ga survive sampe tanggal tertentu. Tapi entah gimana bisa aja gitu. Ada aja jalannya augmented reality real time puppet I made. You can try it now went below
           in the thread.
         </Text>
-        <Image src={postImage} maxWidth={"400px"} rounded={8} />
+        <Image src={postImage} width={"400px"} rounded={8} />
         <Flex gap={2} marginY={1} alignItems={"center"}>
           <Image src="./heart.svg" alt="like" height={"18px"} />
           <Text fontSize={"14px"} fontWeight={400} lineHeight={"20px"} color={"brand.fontSecondary"}>

@@ -9,6 +9,7 @@ const themeConfig: ThemeOverride = {
       backgroundBox: "#262626",
       fontSecondary: "#909090",
       borderAbu: "#545454",
+      searchBar: "#3F3F3F",
     },
   },
   fonts: {

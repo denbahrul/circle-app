@@ -1,28 +1,34 @@
-import { Box, Flex, Image, Text } from "@chakra-ui/react";
+import { Box, Button, Flex, Image, Text } from "@chakra-ui/react";
 
 interface Account {
   image: string;
   fullName: string;
   userName: string;
+  bio?: string;
 }
 
-export default function OthersAccountItem({ image, fullName, userName }: Account) {
+export default function OthersAccountItem({ image, fullName, userName, bio }: Account) {
   return (
-    <Flex justifyContent={"space-between"}>
-      <Flex gap={2}>
-        <Image src={image} alt="thumbnail" borderColor={"brand.backgroundBox"} height={"40px"} rounded={"full"} objectFit="cover" />
-        <Box>
-          <Text fontSize={"14px"} mb={1} fontWeight={700} lineHeight={"16px"}>
-            {fullName}
-          </Text>
-          <Text fontSize={"14px"} fontWeight={400} lineHeight={"16px"} color={"brand.fontSecondary"}>
-            {userName}
-          </Text>
-        </Box>
+    <Flex gap={2} justifyContent={"space-between"}>
+      <Image src={image} alt="thumbnail" borderColor={"brand.backgroundBox"} height={"40px"} width={"40px"} rounded={"full"} objectFit="cover" />
+      <Flex direction={"column"} gap={2} width={"100%"}>
+        <Flex justifyContent={"space-between"}>
+          <Box>
+            <Text fontSize={"14px"} mb={1} fontWeight={700} lineHeight={"16px"}>
+              {fullName}
+            </Text>
+            <Text fontSize={"14px"} fontWeight={400} lineHeight={"16px"} color={"brand.fontSecondary"}>
+              {userName}
+            </Text>
+          </Box>
+          <Button backgroundColor={"transparent"} height={"33px"} border={"solid 1px"} borderColor={"white"} color={"white"} rounded={"full"} padding={"7px 20px"} fontSize={"14px"} fontWeight={700}>
+            Follow
+          </Button>
+        </Flex>
+        <Text noOfLines={1} fontSize={"14px"} fontWeight={400} lineHeight={"20px"}>
+          {bio}
+        </Text>
       </Flex>
-      <Box height={"33px"} justifyItems={"center"} border={"solid 1px"} rounded={"full"} alignItems={"center"} padding={"7px 20px"} fontSize={"14px"} fontWeight={700} lineHeight={"17px"}>
-        Follow
-      </Box>
     </Flex>
   );
 }

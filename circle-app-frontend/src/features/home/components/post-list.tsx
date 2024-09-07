@@ -1,4 +1,4 @@
-import PostItem from "../../../components/ui/item-post";
+import PostItem from "../../../components/ui/post-item";
 
 export default function PostList() {
   return (

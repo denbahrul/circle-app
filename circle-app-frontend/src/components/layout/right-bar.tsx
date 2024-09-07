@@ -1,6 +1,6 @@
 import { Box, Flex, Image, Text } from "@chakra-ui/react";
 import ProfileHeading from "../ui/profile-heading";
-import OthersAccountItem from "../ui/others-account-item";
+import OthersAccountItem from "../ui/item-others-account";
 
 export default function RightBar() {
   return (

@@ -9,7 +9,7 @@ interface Post {
 
 export default function PostItem({ image, fullName, userName, postImage }: Post) {
   return (
-    <Flex gap={4} padding={4} borderY={"solid 1px"} borderColor={"brand.borderAbu"}>
+    <Flex gap={4} padding={4} borderTop={"solid 1px"} borderColor={"brand.borderAbu"}>
       <Image src={image} alt="thumbnail" borderColor={"brand.backgroundBox"} height={"40px"} rounded={"full"} objectFit="cover" />
       <Flex direction={"column"} gap={2}>
         <Flex gap={1}>

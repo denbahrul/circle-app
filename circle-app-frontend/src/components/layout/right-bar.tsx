@@ -5,12 +5,12 @@ import OthersAccountItem from "../ui/others-account-item";
 export default function RightBar() {
   return (
     <Box width={"563px"}>
-      <Flex gap={"16px"} direction={"column"} borderLeft={"solid 1px"} borderColor={"brand.borderAbu"} height={"100vh"} padding={8}>
+      <Flex gap={"16px"} direction={"column"} height={"100vh"} padding={8}>
         <Box backgroundColor={"brand.backgroundBox"} padding={"12px 20px 20px 20px"} rounded={12}>
           <Text fontSize={"20px"} fontWeight={700} lineHeight={"28px"} mb={4}>
             My Profile
           </Text>
-          <ProfileHeading />
+          <ProfileHeading thumbnailH="100px" />
         </Box>
         <Box backgroundColor={"brand.backgroundBox"} padding={"12px 20px 20px 20px"} rounded={12}>
           <Text fontSize={"20px"} fontWeight={700} lineHeight={"28px"} mb={4}>

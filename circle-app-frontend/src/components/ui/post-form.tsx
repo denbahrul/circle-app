@@ -1,4 +1,4 @@
-import { Box, Button, Flex, Image, Input, Text, FormControl } from "@chakra-ui/react";
+import { Box, Button, Flex, Image, Input, FormControl } from "@chakra-ui/react";
 
 export default function FormPost({ placeholder, buttonTitle }: { placeholder: string; buttonTitle: string }) {
   return (

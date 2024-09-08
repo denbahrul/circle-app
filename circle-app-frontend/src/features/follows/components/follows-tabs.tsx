@@ -1,4 +1,4 @@
-import { Tabs, TabList, TabPanels, Tab, TabPanel, TabIndicator } from "@chakra-ui/react";
+import { Tabs, TabList, TabPanels, TabPanel } from "@chakra-ui/react";
 import OthersAccountItem from "../../../components/ui/others-account-item";
 import { TabIndicatorCircle, TabItem } from "../../../components/ui/circle-tab";
 

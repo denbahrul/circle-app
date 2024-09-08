@@ -4,7 +4,7 @@ import { HiOutlineXCircle } from "react-icons/hi";
 
 export default function EditProfileModal({ thumbnailH }: { thumbnailH: string }) {
   return (
-    <ModalContent backgroundColor={"brand.backgroundCircle"} rounded={15}>
+    <ModalContent maxW={"606px"} backgroundColor={"brand.backgroundCircle"} rounded={15}>
       <ModalHeader pl={4} pt={2} pb={0} fontSize={"20px"} fontWeight={700}>
         Edit profile
       </ModalHeader>
@@ -27,19 +27,19 @@ export default function EditProfileModal({ thumbnailH }: { thumbnailH: string })
             <Text position={"absolute"} left={4} top={1} fontSize={"12px"} fontWeight={500} color={"brand.borderAbu"}>
               Name
             </Text>
-            <Input value="✨ Stella Audhina ✨" fontSize={"14px"} height={"48px"} pt={2} border={"solid 1px"} borderColor={"brand.borderAbu"} />
+            <Input focusBorderColor="brand.green" value="✨ Stella Audhina ✨" fontSize={"14px"} height={"48px"} pt={2} border={"solid 1px"} borderColor={"brand.borderAbu"} />
           </Box>
           <Box position={"relative"}>
             <Text position={"absolute"} left={4} top={1} fontSize={"12px"} fontWeight={500} color={"brand.borderAbu"}>
               Username
             </Text>
-            <Input value="audhinafh" fontSize={"14px"} height={"48px"} pt={2} border={"solid 1px"} borderColor={"brand.borderAbu"} />
+            <Input focusBorderColor="brand.green" value="audhinafh" fontSize={"14px"} height={"48px"} pt={2} border={"solid 1px"} borderColor={"brand.borderAbu"} />
           </Box>
           <Box position={"relative"}>
             <Text position={"absolute"} left={4} top={1} fontSize={"12px"} fontWeight={500} color={"brand.borderAbu"}>
               Bio
             </Text>
-            <Textarea value="picked over by the worms, and weird fishes" fontSize={"14px"} height={"48px"} pt={4} border={"solid 1px"} borderColor={"brand.borderAbu"} />
+            <Textarea focusBorderColor="brand.green" value="picked over by the worms, and weird fishes" fontSize={"14px"} height={"48px"} pt={4} border={"solid 1px"} borderColor={"brand.borderAbu"} />
           </Box>
         </Flex>
       </ModalBody>

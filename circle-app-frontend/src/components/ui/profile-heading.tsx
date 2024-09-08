@@ -1,4 +1,4 @@
-import { Box, Button, Flex, Image, Input, Text, Textarea } from "@chakra-ui/react";
+import { Box, Button, Flex, Image, Text } from "@chakra-ui/react";
 import { Modal, ModalOverlay, useDisclosure } from "@chakra-ui/react";
 import EditProfileModal from "./profile-modal";
 

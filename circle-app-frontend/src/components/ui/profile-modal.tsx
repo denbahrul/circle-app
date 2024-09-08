@@ -1,5 +1,5 @@
 import { Box, Button, Flex, Image, Input, Text, Textarea } from "@chakra-ui/react";
-import { ModalContent, ModalHeader, ModalFooter, ModalBody, ModalCloseButton, useDisclosure } from "@chakra-ui/react";
+import { ModalContent, ModalHeader, ModalFooter, ModalBody, ModalCloseButton } from "@chakra-ui/react";
 import { HiOutlineXCircle } from "react-icons/hi";
 
 export default function EditProfileModal({ thumbnailH }: { thumbnailH: string }) {

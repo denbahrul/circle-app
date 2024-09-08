@@ -6,7 +6,7 @@ import StartSearch from "../../features/search/components/search-start";
 export default function Search() {
   return (
     <AppLayout>
-      <Flex direction={"column"} mt={4} height={"100vh"}>
+      <Flex direction={"column"} mt={4} height={"100vh"} p={4}>
         <SearchBar />
         <StartSearch />
       </Flex>

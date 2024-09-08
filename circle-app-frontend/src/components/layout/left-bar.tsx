@@ -1,5 +1,5 @@
 import { Box, Flex, Image, Button } from "@chakra-ui/react";
-import ItemMenu from "../ui/item-menu";
+import ItemMenu from "../ui/menu-item";
 
 export default function LeftBar() {
   return (

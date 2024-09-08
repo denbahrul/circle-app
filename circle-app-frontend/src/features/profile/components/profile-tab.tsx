@@ -1,5 +1,5 @@
 import { Tabs, TabList, TabPanels, Tab, TabPanel, TabIndicator } from "@chakra-ui/react";
-import OthersAccountItem from "../../../components/ui/item-others-account";
+import OthersAccountItem from "../../../components/ui/others-account-item";
 import { TabIndicatorCircle, TabItem } from "../../../components/ui/circle-tab";
 import PostList from "./post-list";
 import PostItem from "../../../components/ui/post-item";

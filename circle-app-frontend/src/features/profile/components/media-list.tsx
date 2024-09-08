@@ -1,4 +1,4 @@
-import { Box, Grid, Image, AspectRatio } from "@chakra-ui/react";
+import { Grid, Image, AspectRatio } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 
 export default function MediaList() {

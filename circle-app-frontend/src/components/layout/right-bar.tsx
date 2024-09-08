@@ -1,4 +1,4 @@
-import { Box, Flex, Image, Text } from "@chakra-ui/react";
+import { Box, Flex, Text } from "@chakra-ui/react";
 import ProfileHeading from "../ui/profile-heading";
 import OthersAccountItem from "../ui/others-account-item";
 

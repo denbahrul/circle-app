@@ -1,4 +1,4 @@
-import { Text, Flex, Box, Image, Grid } from "@chakra-ui/react";
+import { Flex, Box, Image } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 import { HiXCircle } from "react-icons/hi";
 import { HiChevronRight, HiChevronLeft } from "react-icons/hi";

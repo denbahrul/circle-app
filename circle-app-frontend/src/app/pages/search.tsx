@@ -1,4 +1,4 @@
-import { Box, Flex, Text } from "@chakra-ui/react";
+import { Flex } from "@chakra-ui/react";
 import AppLayout from "../../components/layout/app-layout";
 import SearchBar from "../../features/search/components/search-bar";
 import StartSearch from "../../features/search/components/search-start";

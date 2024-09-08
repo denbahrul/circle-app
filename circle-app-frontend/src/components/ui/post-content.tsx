@@ -1,14 +1,14 @@
-import { Flex, Image, Text } from "@chakra-ui/react";
+import { Avatar, Flex, Image, Text } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 import { Post } from "../../types/post";
 
 export default function PostContent({ image, fullName, userName, postImage, children }: Post) {
   return (
-    <Link to="detail-post">
+    <Link to="/detail-post">
       <Flex gap={4} padding={4} borderTop={"solid 1px"} borderColor={"brand.borderAbu"}>
-        <Image src={image} alt="thumbnail" borderColor={"brand.backgroundBox"} height={"40px"} rounded={"full"} objectFit="cover" />
+        <Avatar src={image} name="Stella Audhina" height={"40px"} width={"40px"} />
         <Flex direction={"column"} gap={2}>
-          <Link to="profile">
+          <Link to="/profile">
             <Flex gap={1}>
               <Text fontSize={"14px"} mb={1} fontWeight={700} lineHeight={"16px"}>
                 {fullName}

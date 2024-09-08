@@ -1,7 +1,6 @@
-import { Box, Text, Flex } from "@chakra-ui/react";
+import { Text, Flex } from "@chakra-ui/react";
 import AppLayout from "../../components/layout/app-layout";
 import { HiOutlineArrowLeft } from "react-icons/hi";
-import PostList from "../../features/home/components/post-list";
 import PostDetail from "../../features/detail/componenets/post-detail";
 import FormPost from "../../components/ui/post-form";
 import RepliesList from "../../features/detail/componenets/replies-list";

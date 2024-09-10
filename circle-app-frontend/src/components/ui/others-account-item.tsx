@@ -5,9 +5,10 @@ interface Account {
   fullName: string;
   userName: string;
   bio?: string;
+  isFollow: string;
 }
 
-export default function OthersAccountItem({ image, fullName, userName, bio }: Account) {
+export default function OthersAccountItem({ image, fullName, userName, bio, isFollow }: Account) {
   return (
     <Flex gap={2} justifyContent={"space-between"}>
       <Image src={image} alt="thumbnail" borderColor={"brand.backgroundBox"} height={"40px"} width={"40px"} rounded={"full"} objectFit="cover" />
@@ -22,7 +23,7 @@ export default function OthersAccountItem({ image, fullName, userName, bio }: Ac
             </Text>
           </Box>
           <Button backgroundColor={"transparent"} height={"33px"} border={"solid 1px"} borderColor={"white"} color={"white"} rounded={"full"} padding={"7px 20px"} fontSize={"14px"} fontWeight={700}>
-            Follow
+            {isFollow}
           </Button>
         </Flex>
         <Text noOfLines={1} fontSize={"14px"} fontWeight={400} lineHeight={"20px"}>

@@ -16,9 +16,11 @@ export default function LoginForm() {
       <FormControl display={"flex"} flexDirection={"column"} gap={"12px"}>
         <Input placeholder="Email/Username*" rounded={8} padding={5} fontSize={14} fontWeight={500} borderColor={"brand.borderAbu"} />
         <Input placeholder="Password" rounded={8} padding={5} fontSize={14} fontWeight={500} borderColor={"brand.borderAbu"} />
-        <Text textAlign={"end"} fontSize={14}>
-          Forgot password?
-        </Text>
+        <Link to="/forgot-password">
+          <Text textAlign={"end"} fontSize={14}>
+            Forgot password?
+          </Text>
+        </Link>
         <Button sx={buttonStyle}>Login</Button>
       </FormControl>
       <Text fontSize={14} marginTop={4}>

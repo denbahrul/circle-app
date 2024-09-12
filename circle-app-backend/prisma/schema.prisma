@@ -27,6 +27,8 @@ model User {
 
   createdAt DateTime @default(now())
   updateAt DateTime @default(now()) @updatedAt
+
+  @@map("users")
 }
 
 model Thread {
@@ -39,4 +41,6 @@ model Thread {
 
   createdAt DateTime @default(now())
   updateAt DateTime @default(now()) @updatedAt
+
+  @@map("threads")
 }

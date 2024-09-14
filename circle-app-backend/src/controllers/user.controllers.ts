@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import Hello from "../services/hello.services";
 import UserServices from "../services/user.services";
+import { createUserSchema } from "../utils/schemas/user.schema";
 
 class UserController {
   async find(req: Request, res: Response) {
@@ -14,7 +15,7 @@ class UserController {
 
   async create(req: Request, res: Response) {
     try {
-      const value = req.body;
+      const value = await createUserSchema.validateAsync(req.body);
 
       const user = await UserServices.createUser(value);
       res.json(user);

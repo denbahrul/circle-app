@@ -1,6 +1,7 @@
 import { PrismaClient, User } from "@prisma/client";
 import { CreateUserDTO, UpdateUSerDTO } from "../dto/user.dto";
 import { error } from "console";
+import { customError } from "../types/custom-error";
 
 const prisma = new PrismaClient();
 
@@ -21,7 +22,11 @@ class UserServices {
     });
 
     if (!user) {
-      throw new Error("User not found!");
+      throw {
+        status: 404,
+        message: "User Not Found!",
+        code: "USER_NOT_EXIST",
+      } as customError;
     }
 
     if (data.fullname) {

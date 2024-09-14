@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import Hello from "../services/hello.services";
 import UserServices from "../services/user.services";
+import { createUserSchema } from "../utils/schemas/user.schema";
 
 class UserController {
   async find(req: Request, res: Response) {
@@ -8,22 +9,18 @@ class UserController {
       const users = await UserServices.getAllUsers();
       res.json(users);
     } catch (error: unknown) {
-      res.status(404).json({
-        messages: "404 Not Found",
-      });
+      res.json(error);
     }
   }
 
   async create(req: Request, res: Response) {
     try {
-      const value = req.body;
+      const value = await createUserSchema.validateAsync(req.body);
 
       const user = await UserServices.createUser(value);
       res.json(user);
     } catch (error) {
-      res.status(404).json({
-        messages: "404 Not Found",
-      });
+      res.json(error);
     }
   }
 
@@ -34,9 +31,7 @@ class UserController {
       const user = await UserServices.updateUser(value);
       res.json(user);
     } catch (error) {
-      res.status(404).json({
-        messages: "404 Not Found",
-      });
+      res.json(error);
     }
   }
 }

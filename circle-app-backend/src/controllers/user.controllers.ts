@@ -8,9 +8,7 @@ class UserController {
       const users = await UserServices.getAllUsers();
       res.json(users);
     } catch (error: unknown) {
-      res.status(404).json({
-        messages: "404 Not Found",
-      });
+      res.json(error);
     }
   }
 
@@ -21,9 +19,7 @@ class UserController {
       const user = await UserServices.createUser(value);
       res.json(user);
     } catch (error) {
-      res.status(404).json({
-        messages: "404 Not Found",
-      });
+      res.json(error);
     }
   }
 
@@ -34,9 +30,7 @@ class UserController {
       const user = await UserServices.updateUser(value);
       res.json(user);
     } catch (error) {
-      res.status(404).json({
-        messages: "404 Not Found",
-      });
+      res.json(error);
     }
   }
 }

@@ -7,9 +7,7 @@ class ThreadController {
       const threads = await ThreadServices.getAllThreads();
       res.json(threads);
     } catch (error) {
-      res.status(404).json({
-        messages: "404 Not Found",
-      });
+      res.json(error);
     }
   }
 
@@ -19,9 +17,7 @@ class ThreadController {
       const thread = await ThreadServices.getThreadById(Number(id));
       res.json(thread);
     } catch (error) {
-      res.status(404).json({
-        messages: "404 Not Found",
-      });
+      res.json(error);
     }
   }
 
@@ -31,9 +27,7 @@ class ThreadController {
       const thread = await ThreadServices.deleteThread(Number(id));
       res.json(thread);
     } catch (error) {
-      res.status(404).json({
-        messages: "404 Not Found",
-      });
+      res.json(error);
     }
   }
 }

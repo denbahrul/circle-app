@@ -9,13 +9,19 @@ export const routerV1 = express.Router();
 
 routerV1.get("/", GreetingMiddleware, HelloController);
 
-routerV1.get("/users", UserController.find);
+// USER
+routerV1.get("/users", UserController.findAll);
+routerV1.get("/users/:id", UserController.findOne);
 routerV1.post("/users", UserController.create);
 routerV1.patch("/users", UserController.update);
 
-routerV1.get("/threads", ThreadController.findAll);
-routerV1.get("/threads/:id", ThreadController.findOne);
-routerV1.delete("/threads/:id", ThreadController.delete);
-
+// AUTH
 routerV1.post("/auth/login", authControllers.login);
 routerV1.post("/auth/register", authControllers.register);
+
+// THREADS
+routerV1.get("/threads", ThreadController.findAll);
+routerV1.get("/threads/:id", ThreadController.findOne);
+routerV1.get("/user/threads/:id", ThreadController.findByUser);
+routerV1.post("/threads", ThreadController.create);
+routerV1.delete("/threads/:id", ThreadController.delete);

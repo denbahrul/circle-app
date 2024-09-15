@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import authServices from "../services/auth.services";
-import { RegisterSchema } from "../utils/schemas/auth.schema";
+import { LoginSchema, RegisterSchema } from "../utils/schemas/auth.schema";
 
 class AuthController {
   async register(req: Request, res: Response) {
@@ -15,7 +15,8 @@ class AuthController {
 
   async login(req: Request, res: Response) {
     try {
-      const user = await authServices.login();
+      const value = await LoginSchema.validateAsync(req.body);
+      const user = await authServices.login(value);
       res.json(user);
     } catch (error) {
       res.json(error);

@@ -46,7 +46,7 @@ class AuthServices {
 
     const { password, ...userToSign } = user;
 
-    const secretKey = process.env.JWT_KEY as string;
+    const secretKey = process.env.JWT_SECRET_KEY as string;
 
     const token = jwt.sign(userToSign, secretKey);
 
@@ -55,6 +55,8 @@ class AuthServices {
       data: userToSign,
     };
   }
+
+  async test() {}
 }
 
 export default new AuthServices();

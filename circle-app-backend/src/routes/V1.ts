@@ -1,9 +1,13 @@
 import express from "express";
+import { Request, Response } from "express";
 import GreetingMiddleware from "../middlewares/greeting";
 import HelloController from "../controllers/hello.controllers";
 import UserController from "../controllers/user.controllers";
 import ThreadController from "../controllers/thread.controllers";
 import authControllers from "../controllers/auth.controllers";
+import { authentication } from "../middlewares/authentication";
+import userControllers from "../controllers/user.controllers";
+import authorization from "../middlewares/authorization";
 
 export const routerV1 = express.Router();
 
@@ -18,6 +22,12 @@ routerV1.patch("/users", UserController.update);
 // AUTH
 routerV1.post("/auth/login", authControllers.login);
 routerV1.post("/auth/register", authControllers.register);
+routerV1.get("/user/me", authentication, authControllers.getUserLogged);
+
+//DASHBOARD ADMIN
+routerV1.get("/dashboard", authentication, authorization("ADMIN"), (req: Request, res: Response) => {
+  res.json({ message: "Dashboard Admin" });
+});
 
 // THREADS
 routerV1.get("/threads", ThreadController.findAll);

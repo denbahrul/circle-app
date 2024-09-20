@@ -22,6 +22,15 @@ class AuthController {
       res.json(error);
     }
   }
+
+  async getUserLogged(req: Request, res: Response) {
+    try {
+      const user = (req as any).user;
+      res.json(user);
+    } catch (error) {
+      res.json(error);
+    }
+  }
 }
 
 export default new AuthController();

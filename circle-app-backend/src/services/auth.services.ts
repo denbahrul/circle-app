@@ -55,6 +55,8 @@ class AuthServices {
       data: userToSign,
     };
   }
+
+  async test() {}
 }
 
 export default new AuthServices();

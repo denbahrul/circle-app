@@ -23,12 +23,19 @@ model User {
   profilePhoto String?
   thumbnail String?
 
+  role RoleEnum @default(MEMBER)
+
   threads Thread[]
 
   createdAt DateTime @default(now())
   updateAt DateTime @default(now()) @updatedAt
 
   @@map("users")
+}
+
+enum RoleEnum {
+  ADMIN
+  MEMBER
 }
 
 model Thread {

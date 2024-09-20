@@ -1,8 +1,7 @@
 import { Request, Response, NextFunction } from "express";
-import { any } from "joi";
 import jwt from "jsonwebtoken";
 
-export function authMiddleware(req: Request, res: Response, next: NextFunction) {
+export function authentication(req: Request, res: Response, next: NextFunction) {
   const authorizationHeader = req.header("Authorization");
 
   if (!authorizationHeader || !authorizationHeader.startsWith("Bearer ")) {

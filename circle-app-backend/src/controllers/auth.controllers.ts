@@ -4,6 +4,17 @@ import { LoginSchema, RegisterSchema } from "../utils/schemas/auth.schema";
 
 class AuthController {
   async register(req: Request, res: Response) {
+    /*  #swagger.requestBody = {
+            required: true,
+            content: {
+                "application/json": {
+                    schema: {
+                        $ref: "#/components/schemas/registerSchema"
+                    }  
+                }
+            }
+        } 
+    */
     try {
       const value = await RegisterSchema.validateAsync(req.body);
       const user = await authServices.register(value);
@@ -14,6 +25,17 @@ class AuthController {
   }
 
   async login(req: Request, res: Response) {
+    /*  #swagger.requestBody = {
+            required: true,
+            content: {
+                "application/json": {
+                    schema: {
+                        $ref: "#/components/schemas/loginSchema"
+                    }  
+                }
+            }
+        } 
+    */
     try {
       const value = await LoginSchema.validateAsync(req.body);
       const user = await authServices.login(value);

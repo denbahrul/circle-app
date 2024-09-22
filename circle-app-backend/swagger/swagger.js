@@ -46,6 +46,39 @@ const doc = {
           },
         },
       },
+      createThreadSchema: {
+        type: "object",
+        properties: {
+          content: {
+            type: "string",
+          },
+          image: {
+            type: "string",
+          },
+        },
+      },
+      createThreadSchema: {
+        type: "object",
+        properties: {
+          threadId: {
+            type: "integer",
+          },
+          content: {
+            type: "string",
+          },
+          image: {
+            type: "string",
+          },
+        },
+      },
+      likeSchema: {
+        type: "object",
+        properties: {
+          threadId: {
+            type: "integer",
+          },
+        },
+      },
     },
   },
 };

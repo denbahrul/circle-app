@@ -28,7 +28,21 @@ class ReactionServices {
   }
 
   async like(data: LikeDTO): Promise<Like | null> {
-    return await prisma.like.create({ data });
+    const like = await prisma.like.findFirst({
+      where: {
+        threadId: data.threadId,
+        authorId: data.authorId,
+      },
+    });
+
+    if (like) {
+      throw {
+        status: "fail",
+        message: "You have already liked this thread",
+      };
+    }
+    const likes = await prisma.like.create({ data });
+    return like;
   }
 
   async unlike(id: number): Promise<Like | null> {

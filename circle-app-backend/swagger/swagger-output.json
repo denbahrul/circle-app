@@ -405,7 +405,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/createThreadSchema"
+                "$ref": "#/components/schemas/likeSchema"
               }
             }
           }
@@ -497,6 +497,14 @@
           },
           "image": {
             "type": "string"
+          }
+        }
+      },
+      "likeSchema": {
+        "type": "object",
+        "properties": {
+          "threadId": {
+            "type": "integer"
           }
         }
       }

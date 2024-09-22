@@ -11,7 +11,7 @@ class ReactionController {
                 content: {
                     "application/json": {
                         schema: {
-                            $ref: "#/components/schemas/createThreadSchema"
+                            $ref: "#/components/schemas/createReplySchema"
                         }  
                     }
                 }
@@ -19,7 +19,7 @@ class ReactionController {
         */
     try {
       const authorId = (req as any).user.id;
-      const { content, image, threadId } = await CreateReplySchema.validateAsync(req.body);
+      const { content, image, threadId } = req.body;
       const reply = await reactionSevices.createReply({
         threadId,
         content,
@@ -58,7 +58,7 @@ class ReactionController {
                 content: {
                     "application/json": {
                         schema: {
-                            $ref: "#/components/schemas/createThreadSchema"
+                            $ref: "#/components/schemas/likeSchema"
                         }  
                     }
                 }
@@ -66,7 +66,7 @@ class ReactionController {
         */
     try {
       const authorId = (req as any).user.id;
-      const threadId = req.body;
+      const { threadId } = req.body;
       const like = await reactionSevices.like({
         threadId,
         authorId,

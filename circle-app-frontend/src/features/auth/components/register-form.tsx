@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { RegisterFormInput, registerSchema } from "../schemas/register";
 import { useAppSelector, useAppDispatch } from "../../../hooks/use-store";
-import { setUser, removeUser } from "../auth-slice";
+import { setUser, removeUser, fetchUserLogged } from "../auth-slice";
 
 export default function RegisterForm() {
   const {
@@ -69,6 +69,9 @@ export default function RegisterForm() {
           <Link to="/login"> Login</Link>
         </Text>
       </Text>
+      <Button onClick={() => dispatch(fetchUserLogged())} backgroundColor={"brand.green"} color={"white"} fontSize={20}>
+        Fetch
+      </Button>
     </Box>
   );
 }

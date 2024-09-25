@@ -1,7 +1,12 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { User } from "../../types/user";
 
 const initialState: User = {} as User;
+
+export const fetchUserLogged = createAsyncThunk("users/fetchUserLogged", async () => {
+  const response = await fetch("https://63660b33046eddf1baf77f68.mockapi.io/api/v1/user");
+  return response.json();
+});
 
 const authSlice = createSlice({
   name: "auth",
@@ -18,6 +23,14 @@ const authSlice = createSlice({
     removeUser(state) {
       return (state = {} as User);
     },
+  },
+  extraReducers: (builder) => {
+    builder.addCase(fetchUserLogged.fulfilled, (state, action) => {
+      return {
+        ...state,
+        test: action.payload,
+      };
+    });
   },
 });
 

@@ -22,6 +22,7 @@ export default function LoginForm() {
     color: "white",
     fontSize: "20px",
   };
+
   return (
     <Box color={"white"} width={"brand.form"}>
       <Image src="/logo.svg" alt="Circle Logo" />

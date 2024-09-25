@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { RegisterFormInput, registerSchema } from "../schemas/register";
+import { useAppSelector, useAppDispatch } from "../../../hooks/use-store";
+import { setUser, removeUser } from "../auth-slice";
 
 export default function RegisterForm() {
   const {
@@ -13,8 +15,20 @@ export default function RegisterForm() {
     resolver: zodResolver(registerSchema),
   });
 
-  function onSubmit(data: object) {
-    console.log(data);
+  const user = useAppSelector((state) => state.auth);
+  const dispatch = useAppDispatch();
+
+  console.log("user", user);
+
+  function onSubmit({ fullName, email, password }: RegisterFormInput) {
+    dispatch(
+      setUser({
+        id: 1,
+        fullName,
+        email,
+        password,
+      })
+    );
   }
 
   return (

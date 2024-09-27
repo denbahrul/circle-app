@@ -1,6 +1,6 @@
 import { Box, Flex, Image, Text } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
-import { Post } from "../../../types/post";
+import { Post } from "../../../entities/thread";
 
 export default function PostDetail({ image, fullName, userName, postImage }: Post) {
   return (

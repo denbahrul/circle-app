@@ -31,7 +31,7 @@ class ThreadController {
         message: "Thread Created",
       });
     } catch (error) {
-      res.json(error);
+      res.status(500).json(error);
     }
   }
 
@@ -48,7 +48,7 @@ class ThreadController {
         },
       });
     } catch (error) {
-      res.json(error);
+      res.status(500).json(error);
     }
   }
 
@@ -66,7 +66,7 @@ class ThreadController {
         },
       });
     } catch (error) {
-      res.json(error);
+      res.status(500).json(error);
     }
   }
 
@@ -83,7 +83,7 @@ class ThreadController {
         },
       });
     } catch (error) {
-      res.json(error);
+      res.status(500).json(error);
     }
   }
 
@@ -98,7 +98,7 @@ class ThreadController {
         message: "Thread deleted",
       });
     } catch (error) {
-      res.json(error);
+      res.status(500).json(error);
     }
   }
 }

@@ -1,4 +1,4 @@
-import { Post } from "../../../types/post";
+import { Post } from "../../../entities/thread";
 import PostContent from "../../../components/ui/post-content";
 import { RepliesAction } from "../../../components/ui/post-action";
 

@@ -1,7 +1,7 @@
 export type customError = {
   status: number;
   message: string;
-  code: CustemErrorCode;
+  code: CustomErrorCode;
 };
 
-export type CustemErrorCode = "USER_NOT_EXIST" | "THREAD_NOT_EXIST" | "REPLY_NOT_EXIST";
+export type CustomErrorCode = "USER_NOT_EXIST" | "THREAD_NOT_EXIST" | "REPLY_NOT_EXIST";

@@ -1,8 +1,8 @@
 import { Avatar, Flex, Image, Text } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
-import { Post } from "../../types/post";
+import { ThreadEntity } from "../../entities/thread";
 
-export default function PostContent({ image, fullName, userName, postImage, children }: Post) {
+export default function PostContent({ image, fullName, userName, postImage, children }: ThreadEntity) {
   return (
     <Link to="/detail-post">
       <Flex gap={4} padding={4} borderTop={"solid 1px"} borderColor={"brand.borderAbu"}>

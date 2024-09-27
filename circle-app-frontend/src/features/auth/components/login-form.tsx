@@ -1,21 +1,9 @@
-import { Box, Image, Text, Input, Button, FormControl } from "@chakra-ui/react";
-import { useForm } from "react-hook-form";
+import { Box, Button, FormControl, Image, Input, Spinner, Text } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
-import { LoginFormInput, loginSchema } from "../schemas/login";
-import { zodResolver } from "@hookform/resolvers/zod";
+import { useLoginForm } from "../hooks/use-login-form";
 
 export default function LoginForm() {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<LoginFormInput>({
-    resolver: zodResolver(loginSchema),
-  });
-
-  function onSubmit(data: LoginFormInput) {
-    console.log(data);
-  }
+  const { register, handleSubmit, errors, isSubmitting, onSubmit } = useLoginForm();
 
   const buttonStyle = {
     backgroundColor: "brand.green",
@@ -49,7 +37,7 @@ export default function LoginForm() {
             </Text>
           </Link>
           <Button type="submit" sx={buttonStyle}>
-            Login
+            {isSubmitting ? <Spinner /> : "Login"}
           </Button>
         </FormControl>
       </form>

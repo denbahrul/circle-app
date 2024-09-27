@@ -1,10 +1,10 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { User } from "../../types/user";
+import { User } from "../../entities/user";
 
 const initialState: User = {} as User;
 
 export const fetchUserLogged = createAsyncThunk("users/fetchUserLogged", async () => {
-  const response = await fetch("https://63660b33046eddf1baf77f68.mockapi.io/api/v1/user");
+  const response = await fetch("http://localhost:3000/api/v1/users");
   return response.json();
 });
 

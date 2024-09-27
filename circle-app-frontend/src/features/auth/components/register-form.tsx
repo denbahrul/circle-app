@@ -1,35 +1,9 @@
-import { Box, Image, Text, Input, Button, FormControl } from "@chakra-ui/react";
+import { Box, Image, Text, Input, Button, Spinner } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { RegisterFormInput, registerSchema } from "../schemas/register";
-import { useAppSelector, useAppDispatch } from "../../../hooks/use-store";
-import { setUser, removeUser, fetchUserLogged } from "../auth-slice";
+import { useRegisterForm } from "../hooks/use-register-form";
 
 export default function RegisterForm() {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<RegisterFormInput>({
-    resolver: zodResolver(registerSchema),
-  });
-
-  const user = useAppSelector((state) => state.auth);
-  const dispatch = useAppDispatch();
-
-  console.log("user", user);
-
-  function onSubmit({ fullName, email, password }: RegisterFormInput) {
-    dispatch(
-      setUser({
-        id: 1,
-        fullName,
-        email,
-        password,
-      })
-    );
-  }
+  const { register, handleSubmit, errors, isSubmitting, onSubmit } = useRegisterForm();
 
   return (
     <Box color={"white"} width={"brand.form"}>
@@ -39,10 +13,10 @@ export default function RegisterForm() {
       </Text>
       <form onSubmit={handleSubmit(onSubmit)}>
         <Box display={"flex"} flexDirection={"column"} gap={"12px"}>
-          <Input {...register("fullName")} type="text" placeholder="Fullname*" rounded={8} padding={5} fontSize={14} fontWeight={500} borderColor={"brand.borderAbu"} />
-          {errors.fullName && (
+          <Input {...register("fullname")} type="text" placeholder="Fullname*" rounded={8} padding={5} fontSize={14} fontWeight={500} borderColor={"brand.borderAbu"} />
+          {errors.fullname && (
             <Text fontSize={13} color={"red"}>
-              * {errors.fullName.message}
+              * {errors.fullname.message}
             </Text>
           )}
           <Input {...register("email")} type="email" placeholder="Email*" rounded={8} padding={5} fontSize={14} fontWeight={500} borderColor={"brand.borderAbu"} />
@@ -58,7 +32,7 @@ export default function RegisterForm() {
             </Text>
           )}
           <Button type="submit" backgroundColor={"brand.green"} color={"white"} fontSize={20}>
-            Create
+            {isSubmitting ? <Spinner /> : "Create"}
           </Button>
         </Box>
       </form>
@@ -69,9 +43,9 @@ export default function RegisterForm() {
           <Link to="/login"> Login</Link>
         </Text>
       </Text>
-      <Button onClick={() => dispatch(fetchUserLogged())} backgroundColor={"brand.green"} color={"white"} fontSize={20}>
+      {/* <Button onClick={() => dispatch(fetchUserLogged())} backgroundColor={"brand.green"} color={"white"} fontSize={20}>
         Fetch
-      </Button>
+      </Button> */}
     </Box>
   );
 }

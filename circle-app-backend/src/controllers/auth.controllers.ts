@@ -22,9 +22,10 @@ class AuthController {
       res.json({
         status: "succes",
         message: "User Created",
+        data: user,
       });
     } catch (error) {
-      res.json(error);
+      res.status(500).json(error);
     }
   }
 
@@ -52,7 +53,7 @@ class AuthController {
         },
       });
     } catch (error) {
-      res.json(error);
+      res.status(500).json(error);
     }
   }
 
@@ -62,7 +63,7 @@ class AuthController {
       const user = (req as any).user;
       res.json(user);
     } catch (error) {
-      res.json(error);
+      res.status(500).json(error);
     }
   }
 }

@@ -7,7 +7,7 @@ import { customError } from "../types/custom-error";
 const prisma = new PrismaClient();
 
 class AuthServices {
-  async register(data: RegisterDTO): Promise<User | null> {
+  async register(data: RegisterDTO): Promise<Omit<User, "password">> {
     const user = await prisma.user.findUnique({
       where: {
         email: data.email,
@@ -24,12 +24,14 @@ class AuthServices {
     const saltRounds = 10;
     const hashedPassword = await bcrypt.hash(data.password, saltRounds);
 
-    return await prisma.user.create({
+    const { password, ...result } = await prisma.user.create({
       data: {
         ...data,
         password: hashedPassword,
       },
     });
+
+    return result;
   }
 
   async login(data: LoginDTO) {

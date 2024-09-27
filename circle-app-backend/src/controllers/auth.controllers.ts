@@ -18,11 +18,14 @@ class AuthController {
     */
     try {
       const value = await RegisterSchema.validateAsync(req.body);
-      const user = await authServices.register(value);
+      await authServices.register(value);
+      const user = await authServices.login(value);
       res.json({
-        status: "succes",
+        status: "success",
         message: "User Created",
-        data: user,
+        data: {
+          accessToken: user.data?.accessToken,
+        },
       });
     } catch (error) {
       res.status(500).json(error);
@@ -45,13 +48,7 @@ class AuthController {
     try {
       const value = await LoginSchema.validateAsync(req.body);
       const user = await authServices.login(value);
-      res.json({
-        status: "succes",
-        message: "User logged succesfully",
-        data: {
-          accessToken: user.token,
-        },
-      });
+      res.json(user);
     } catch (error) {
       res.status(500).json(error);
     }

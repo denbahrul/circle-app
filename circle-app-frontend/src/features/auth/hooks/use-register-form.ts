@@ -5,6 +5,8 @@ import { useAppDispatch, useAppSelector } from "../../../hooks/use-store";
 import { setUser } from "../auth-slice";
 import { RegisterFormInput, registerSchema } from "../schemas/register";
 import { RegisterRequestDTO, RegisterResponseDTO } from "../types/auth.dto";
+import { useNavigate } from "react-router-dom";
+import Cookies from "js-cookie";
 
 export function useRegisterForm() {
   const {
@@ -17,6 +19,7 @@ export function useRegisterForm() {
 
   const user = useAppSelector((state) => state.auth);
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
   console.log("user", user);
 
@@ -24,14 +27,21 @@ export function useRegisterForm() {
     try {
       const response = await axios.post<null, { data: RegisterResponseDTO }, RegisterRequestDTO>("http://localhost:3000/api/v1/auth/register", { fullname: data.fullname, email: data.email, password: data.password });
       alert(response.data.message);
-      const { id, fullname, email } = response.data.data;
+      const { accessToken } = response.data.data;
+
+      Cookies.set("token", accessToken, { expires: 2 });
+
       dispatch(
         setUser({
-          id,
-          fullName: fullname,
-          email,
+          id: 1,
+          fullname: "fullname",
+          email: "email",
+          password: "password",
+          role: "MEMBER",
         })
       );
+
+      navigate("/");
     } catch (error) {
       if (axios.isAxiosError(error) && error.response) {
         console.error(error.response.data); // Log response error dari server

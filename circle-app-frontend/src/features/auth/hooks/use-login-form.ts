@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { LoginFormInput, loginSchema } from "../schemas/login";
 import { LoginRequestDTO, LoginResponseDTO } from "../types/auth.dto";
+import Cookies from "js-cookie";
 
 export function useLoginForm() {
   const {
@@ -20,6 +21,10 @@ export function useLoginForm() {
     try {
       const response = await axios.post<null, { data: LoginResponseDTO }, LoginRequestDTO>("http://localhost:3000/api/v1/auth/login", { email, password });
       alert(response.data.message);
+
+      const { accessToken } = response.data.data;
+
+      Cookies.set("token", accessToken, { expires: 2 });
 
       navigate("/");
     } catch (error) {

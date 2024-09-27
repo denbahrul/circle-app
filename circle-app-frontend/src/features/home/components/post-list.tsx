@@ -1,6 +1,10 @@
 import PostItem from "../../../components/ui/post-item";
+import { useAppSelector } from "../../../hooks/use-store";
 
 export default function PostList() {
+  const user = useAppSelector((state) => state.auth);
+  console.log("logged user", user);
+
   return (
     <>
       <PostItem image="./profile.png" fullName="Elon Musk" userName="@elonmusk" />

@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { User } from "../../entities/user";
+import { UserEntity } from "../../entities/user";
 
-const initialState: User = {} as User;
+const initialState: UserEntity = {} as UserEntity;
 
 export const fetchUserLogged = createAsyncThunk("users/fetchUserLogged", async () => {
   const response = await fetch("http://localhost:3000/api/v1/users");
@@ -12,16 +12,17 @@ const authSlice = createSlice({
   name: "auth",
   initialState,
   reducers: {
-    setUser(state, action: PayloadAction<User>) {
+    setUser(state, action: PayloadAction<UserEntity>) {
       return (state = {
         id: action.payload.id,
-        fullName: action.payload.fullName,
+        fullname: action.payload.fullname,
         email: action.payload.email,
         password: action.payload.password,
+        role: action.payload.role,
       });
     },
     removeUser(state) {
-      return (state = {} as User);
+      return (state = {} as UserEntity);
     },
   },
   extraReducers: (builder) => {

@@ -1,36 +1,45 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { UserEntity } from "../../entities/user";
+import { apiV1 } from "../../libs/api";
+import { UserStoreDTO } from "./types/auth.dto";
 
-const initialState: UserEntity = {} as UserEntity;
-
-export const fetchUserLogged = createAsyncThunk("users/fetchUserLogged", async () => {
-  const response = await fetch("http://localhost:3000/api/v1/users");
-  return response.json();
+export const getUserLogged = createAsyncThunk("users/getUserLogged", async () => {
+  const response = await apiV1.get<null, { data: UserStoreDTO }>("/user/me");
+  return response.data;
 });
+
+// const initialState: UserStoreDTO = {} as UserStoreDTO;
+
+interface UserState {
+  entities: UserStoreDTO;
+  loading: "idle" | "pending" | "succeeded" | "failed";
+}
+
+const initialState: UserState = {
+  entities: {} as UserStoreDTO,
+  loading: "idle",
+};
 
 const authSlice = createSlice({
   name: "auth",
   initialState,
   reducers: {
-    setUser(state, action: PayloadAction<UserEntity>) {
-      return (state = {
-        id: action.payload.id,
-        fullname: action.payload.fullname,
-        email: action.payload.email,
-        password: action.payload.password,
-        role: action.payload.role,
-      });
+    setUser: (state, action: PayloadAction<UserStoreDTO>) => {
+      state.entities = action.payload;
     },
-    removeUser(state) {
-      return (state = {} as UserEntity);
+    removeUser() {
+      return initialState;
     },
   },
   extraReducers: (builder) => {
-    builder.addCase(fetchUserLogged.fulfilled, (state, action) => {
-      return {
-        ...state,
-        test: action.payload,
-      };
+    builder.addCase(getUserLogged.fulfilled, (state, action) => {
+      state.entities = action.payload;
+      state.loading = "succeeded";
+    });
+    builder.addCase(getUserLogged.pending, (state) => {
+      state.loading = "pending";
+    });
+    builder.addCase(getUserLogged.rejected, (state) => {
+      state.loading = "failed";
     });
   },
 });

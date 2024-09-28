@@ -7,9 +7,12 @@ export type LoginResponseDTO = {
   message: string;
   data: {
     accessToken: string;
+    user: UserStoreDTO;
   };
 };
 
 export type RegisterRequestDTO = Pick<UserEntity, "fullname" | "email" | "password">;
 
 export type RegisterResponseDTO = LoginResponseDTO;
+
+export type UserStoreDTO = Omit<UserEntity, "password">;

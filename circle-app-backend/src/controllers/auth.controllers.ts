@@ -25,6 +25,7 @@ class AuthController {
         message: "User Created",
         data: {
           accessToken: user.data?.accessToken,
+          user: user.data?.user,
         },
       });
     } catch (error) {

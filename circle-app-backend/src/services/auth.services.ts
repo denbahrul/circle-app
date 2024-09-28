@@ -77,6 +77,7 @@ class AuthServices {
       message: "User logged succesfully",
       data: {
         accessToken: token,
+        user: userToSign,
       },
     };
   }

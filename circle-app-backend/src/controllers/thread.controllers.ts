@@ -40,13 +40,7 @@ class ThreadController {
     // #swagger.summary = 'Get all thread'
     try {
       const threads = await ThreadServices.getAllThreads();
-      res.json({
-        status: "success",
-        message: "Threads retrived",
-        data: {
-          threads,
-        },
-      });
+      res.json(threads);
     } catch (error) {
       res.status(500).json(error);
     }

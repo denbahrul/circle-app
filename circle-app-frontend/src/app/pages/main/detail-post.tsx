@@ -1,9 +1,9 @@
 import { Text, Flex } from "@chakra-ui/react";
-import AppLayout from "../../components/layout/app-layout";
+import AppLayout from "../../../components/layout/app-layout";
 import { HiOutlineArrowLeft } from "react-icons/hi";
-import PostDetail from "../../features/detail/componenets/post-detail";
-import FormPost from "../../components/ui/post-form";
-import RepliesList from "../../features/detail/componenets/replies-list";
+import PostDetail from "../../../features/detail/componenets/post-detail";
+import FormPost from "../../../components/ui/post-form";
+import RepliesList from "../../../features/detail/componenets/replies-list";
 
 export default function DetailPost() {
   return (
@@ -14,7 +14,7 @@ export default function DetailPost() {
           Status
         </Text>
       </Flex>
-      <PostDetail image="./profile.png" fullName="Cristiano Ronaldo" userName="@cristiano" />
+      <PostDetail image="./profile.png" fullName="Cristiano Ronaldo" userName="@cristiano" postContent="okee" />
       <FormPost placeholder="Type your reply!" buttonTitle="Reply" />
       <RepliesList />
     </AppLayout>

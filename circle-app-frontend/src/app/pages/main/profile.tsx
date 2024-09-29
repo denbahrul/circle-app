@@ -1,7 +1,7 @@
 import { Box, Text, Flex } from "@chakra-ui/react";
-import AppLayout from "../../components/layout/app-layout";
-import ProfileHeading from "../../components/ui/profile-heading";
-import ProfileTabs from "../../features/profile/components/profile-tab";
+import AppLayout from "../../../components/layout/app-layout";
+import ProfileHeading from "../../../components/ui/profile-heading";
+import ProfileTabs from "../../../features/profile/components/profile-tab";
 import { HiOutlineArrowLeft } from "react-icons/hi";
 
 export default function Profile() {

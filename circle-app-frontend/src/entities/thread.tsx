@@ -1,7 +1,13 @@
+import { UserEntity } from "./user";
+
 export interface ThreadEntity {
-  image: string;
-  fullName: string;
-  userName: string;
-  postImage?: string;
-  children?: React.ReactNode;
+  id: number;
+  content: string;
+  image?: string;
+  author: UserEntity;
+  authorId: number;
+  replies: any[];
+  like: any[];
+  createdAt: Date;
+  updateAt: Date;
 }

@@ -1,7 +1,7 @@
 import { Flex } from "@chakra-ui/react";
-import AppLayout from "../../components/layout/app-layout";
-import SearchBar from "../../features/search/components/search-bar";
-import StartSearch from "../../features/search/components/search-start";
+import AppLayout from "../../../components/layout/app-layout";
+import SearchBar from "../../../features/search/components/search-bar";
+import StartSearch from "../../../features/search/components/search-start";
 
 export default function Search() {
   return (

@@ -1,6 +1,6 @@
 import { Box, Text } from "@chakra-ui/react";
-import AppLayout from "../../components/layout/app-layout";
-import FollowsTabs from "../../features/follows/components/follows-tabs";
+import AppLayout from "../../../components/layout/app-layout";
+import FollowsTabs from "../../../features/follows/components/follows-tabs";
 
 export default function Follows() {
   return (

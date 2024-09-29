@@ -1,8 +1,8 @@
 import { Box, Flex, Image, Text } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
-import { ThreadEntity } from "../../../entities/thread";
+import { Thread } from "../../home/types/thread.dto";
 
-export default function PostDetail({ image, fullName, userName, postImage }: ThreadEntity) {
+export default function PostDetail({ image, fullName, userName, postImage }: Thread) {
   return (
     <Flex direction={"column"} gap={3} padding={4} borderBottom={"solid 1px"} borderColor={"brand.borderAbu"}>
       <Flex gap={3}>

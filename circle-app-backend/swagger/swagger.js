@@ -57,7 +57,7 @@ const doc = {
           },
         },
       },
-      createThreadSchema: {
+      createReplySchema: {
         type: "object",
         properties: {
           threadId: {

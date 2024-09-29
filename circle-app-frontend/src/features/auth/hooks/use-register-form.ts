@@ -6,6 +6,8 @@ import { RegisterRequestDTO, RegisterResponseDTO } from "../types/auth.dto";
 import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
 import { apiV1 } from "../../../libs/api";
+import { useAppDispatch } from "../../../hooks/use-store";
+import { setUser } from "../auth-slice";
 
 export function useRegisterForm() {
   const {
@@ -17,14 +19,17 @@ export function useRegisterForm() {
   });
 
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
 
   async function onSubmit(data: RegisterFormInput) {
     try {
       const response = await apiV1.post<null, { data: RegisterResponseDTO }, RegisterRequestDTO>("/auth/register", { fullname: data.fullname, email: data.email, password: data.password });
       alert(response.data.message);
-      const { accessToken } = response.data.data;
+      const { accessToken, user } = response.data.data;
 
       Cookies.set("token", accessToken, { expires: 2 });
+
+      dispatch(setUser(user));
 
       navigate("/");
     } catch (error) {

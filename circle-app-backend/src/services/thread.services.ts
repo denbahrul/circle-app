@@ -1,6 +1,7 @@
 import { PrismaClient, Thread, User } from "@prisma/client";
 import { customError } from "../types/custom-error";
 import { CreateThreadsDTO } from "../dto/threads.dto";
+import { SuccessResponse } from "../types/success-respons";
 
 const prisma = new PrismaClient();
 
@@ -9,14 +10,27 @@ class ThreadServies {
     return await prisma.thread.create({ data });
   }
 
-  async getAllThreads(): Promise<Thread[]> {
-    return await prisma.thread.findMany({});
+  async getAllThreads(): Promise<SuccessResponse<Thread[]>> {
+    const threads = await prisma.thread.findMany({
+      include: {
+        author: true,
+        replies: true,
+        like: true,
+      },
+    });
+
+    return {
+      status: "success",
+      message: "Threads retrived",
+      data: threads,
+    };
   }
 
   async getThreadById(id: number): Promise<Thread | null> {
     const thread = await prisma.thread.findFirst({
       where: { id },
       include: {
+        author: true,
         replies: true,
         like: true,
       },

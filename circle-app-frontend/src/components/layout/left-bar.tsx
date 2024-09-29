@@ -2,9 +2,18 @@ import { Box, Flex, Image, Button } from "@chakra-ui/react";
 import ItemMenu from "../ui/menu-item";
 import { Modal, ModalOverlay, useDisclosure } from "@chakra-ui/react";
 import CreatePostModal from "../ui/post-modal";
+import Cookies from "js-cookie";
+import { useAppDispatch } from "../../hooks/use-store";
+import { removeUser } from "../../features/auth/auth-slice";
 
 export default function LeftBar() {
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const dispatch = useAppDispatch();
+
+  function onClick() {
+    Cookies.remove("token");
+    dispatch(removeUser());
+  }
 
   return (
     <Box width={"417px"}>
@@ -22,7 +31,9 @@ export default function LeftBar() {
           </Button>
         </Flex>
         <Box mt={"auto"}>
-          <ItemMenu route="/login" menuIcon="./logout.svg" menuTitle="Logout" />
+          <button onClick={onClick}>
+            <ItemMenu route="/login" menuIcon="./logout.svg" menuTitle="Logout" />
+          </button>
         </Box>
       </Flex>
       <Modal closeOnOverlayClick={false} isOpen={isOpen} onClose={onClose}>

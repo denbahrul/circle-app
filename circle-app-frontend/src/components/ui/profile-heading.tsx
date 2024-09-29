@@ -9,7 +9,7 @@ export default function ProfileHeading({ thumbnailH, fullname, username, bio, pr
   return (
     <>
       <Box position={"relative"} marginBottom={4}>
-        <Image src="./thumbnail.png" alt="thumbnail" height={thumbnailH} width={"100%"} rounded={8} objectFit="cover" />
+        <Image src="/thumbnail.png" alt="thumbnail" height={thumbnailH} width={"100%"} rounded={8} objectFit="cover" />
         <Avatar src={profilePhoto} name={fullname} border={"solid 4px"} borderColor={"brand.backgroundBox"} position={"absolute"} bottom={"0px"} left={"14px"} height={"80px"} width={"80px"} rounded={"full"} objectFit="cover" />
         <Flex justifyContent={"flex-end"} marginTop={2}>
           <Button onClick={onOpen} backgroundColor={"transparent"} height={"33px"} border={"solid 1px"} borderColor={"white"} color={"white"} rounded={"full"} padding={"7px 20px"} fontSize={"14px"} fontWeight={700} lineHeight={"17px"}>

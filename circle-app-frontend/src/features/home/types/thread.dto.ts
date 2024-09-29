@@ -15,3 +15,7 @@ export type ThreadResponseDTO = {
   message: string;
   data: ThreadEntity[];
 };
+
+export type ThreadPostResponseDTO = Omit<ThreadResponseDTO, "data">;
+
+export type ThreadPostRequestDTO = Pick<ThreadEntity, "content" | "image">;

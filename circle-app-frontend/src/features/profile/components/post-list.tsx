@@ -25,7 +25,9 @@ export default function PostList() {
   return (
     <Box id="post">
       {threads.map((threads) => {
-        return <PostItem fullName={threads.author.fullname} userName={threads.author.username} postContent={threads.content} postImage={threads.image} like={threads.like.length} reply={threads.replies.length} />;
+        return (
+          <PostItem key={threads.id} id={threads.id} fullName={threads.author.fullname} userName={threads.author.username} postContent={threads.content} postImage={threads.image} like={threads.like.length} reply={threads.replies.length} />
+        );
       })}
     </Box>
   );

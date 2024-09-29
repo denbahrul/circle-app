@@ -27,7 +27,7 @@ export default function MediaList() {
       {medias.map((media) => {
         if (media.image !== null) {
           return (
-            <Link to={"/detail-image"}>
+            <Link key={media.id} to={"/detail-image"}>
               <AspectRatio width={"100%"} ratio={1}>
                 <Image src={media.image} rounded={4} objectFit="cover" />
               </AspectRatio>

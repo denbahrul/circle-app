@@ -20,11 +20,11 @@ export default function RightBar() {
             Suggested for you
           </Text>
           <Flex direction={"column"} gap={4}>
-            <OthersAccountItem image="./profile.png" fullName="Elon Musk" userName="@elonnnn" isFollow="Follow" />
-            <OthersAccountItem image="./profile.png" fullName="Cristiano Ronaldo" userName="@cristiano" isFollow="Follow" />
-            <OthersAccountItem image="./profile.png" fullName="Gibran Rakbuming" userName="@gibranraka" isFollow="Follow" />
-            <OthersAccountItem image="./profile.png" fullName="Billie Eilish" userName="@billieelish" isFollow="Follow" />
-            <OthersAccountItem image="./profile.png" fullName="Najwa Shihab" userName="@najwa" isFollow="Follow" />
+            <OthersAccountItem image="/profile.png" fullName="Elon Musk" userName="@elonnnn" isFollow="Follow" />
+            <OthersAccountItem image="/profile.png" fullName="Cristiano Ronaldo" userName="@cristiano" isFollow="Follow" />
+            <OthersAccountItem image="/profile.png" fullName="Gibran Rakbuming" userName="@gibranraka" isFollow="Follow" />
+            <OthersAccountItem image="/profile.png" fullName="Billie Eilish" userName="@billieelish" isFollow="Follow" />
+            <OthersAccountItem image="/profile.png" fullName="Najwa Shihab" userName="@najwa" isFollow="Follow" />
           </Flex>
         </Box>
         <Box backgroundColor={"brand.backgroundBox"} padding={"12px 20px 20px 20px"} rounded={12}>

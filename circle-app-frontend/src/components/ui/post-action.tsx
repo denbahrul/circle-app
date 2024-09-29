@@ -23,7 +23,7 @@ export function RepliesAction({ like }: { like: number }) {
   return (
     <Flex gap={4} marginY={1} alignItems={"center"}>
       <Flex gap={2} alignItems={"center"}>
-        <Image src="./heart.svg" alt="like" height={"18px"} />
+        <Image src="/heart.svg" alt="like" height={"18px"} />
         <Text fontSize={"14px"} fontWeight={400} lineHeight={"20px"} color={"brand.fontSecondary"}>
           {like}
         </Text>

@@ -26,7 +26,7 @@ routerV1.post("/threads", authentication, ThreadController.create);
 routerV1.delete("/threads/:id", authentication, ThreadController.delete);
 
 // THREAD REACTION
-routerV1.post("/threads/reply", authentication, reactionController.reply);
+routerV1.post("/threads/:id/reply", authentication, reactionController.reply);
 routerV1.delete("/threads/reply/:id", authentication, reactionController.deleteReply);
 routerV1.post("/threads/like", authentication, reactionController.like);
 routerV1.delete("/threads/like/:id", authentication, reactionController.unlike);

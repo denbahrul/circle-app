@@ -26,12 +26,14 @@ class ThreadServies {
     };
   }
 
-  async getThreadById(id: number): Promise<Thread | null> {
+  async getThreadById(id: number): Promise<SuccessResponse<Thread>> {
     const thread = await prisma.thread.findFirst({
       where: { id },
       include: {
         author: true,
-        replies: true,
+        replies: {
+          include: { author: true },
+        },
         like: true,
       },
     });
@@ -44,7 +46,11 @@ class ThreadServies {
       } as customError;
     }
 
-    return thread;
+    return {
+      status: "success",
+      message: "Thread retrived",
+      data: thread,
+    };
   }
 
   async getThreadByUser(id: number): Promise<SuccessResponse<Thread[]>> {

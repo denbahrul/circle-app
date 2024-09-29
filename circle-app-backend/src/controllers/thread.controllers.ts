@@ -69,13 +69,7 @@ class ThreadController {
     try {
       const { id } = req.params;
       const threads = await ThreadServices.getThreadByUser(Number(id));
-      res.json({
-        status: "success",
-        message: "Threads retrived",
-        data: {
-          threads,
-        },
-      });
+      res.json(threads);
     } catch (error) {
       res.status(500).json(error);
     }

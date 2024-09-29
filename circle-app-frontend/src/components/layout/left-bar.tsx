@@ -25,7 +25,7 @@ export default function LeftBar() {
           <ItemMenu route="/" menuIcon="./home.svg" menuTitle="Home" />
           <ItemMenu route="/search" menuIcon="./user-search.svg" menuTitle="Search" />
           <ItemMenu route="/follows" menuIcon="./follows.svg" menuTitle="Follows" />
-          <ItemMenu route="/profile" menuIcon="./profile-circle.svg" menuTitle="Profile" />
+          <ItemMenu route="/my-profile" menuIcon="./profile-circle.svg" menuTitle="Profile" />
           <Button onClick={onOpen} backgroundColor={"brand.green"} color={"white"} fontSize={20}>
             Create Post
           </Button>

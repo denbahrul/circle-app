@@ -47,15 +47,17 @@ class ThreadServies {
     return thread;
   }
 
-  async getThreadByUser(id: number) {
-    const user = await prisma.user.findUnique({
-      where: { id },
-      select: {
-        threads: true,
+  async getThreadByUser(id: number): Promise<SuccessResponse<Thread[]>> {
+    const thread = await prisma.thread.findMany({
+      where: { authorId: id },
+      include: {
+        author: true,
+        replies: true,
+        like: true,
       },
     });
 
-    if (!user) {
+    if (!thread) {
       throw {
         code: "USER_NOT_EXIST",
         status: 404,
@@ -63,7 +65,11 @@ class ThreadServies {
       } as customError;
     }
 
-    return user;
+    return {
+      status: "success",
+      message: "Threads retrived",
+      data: thread,
+    };
   }
 
   async deleteThread(id: number): Promise<Thread | null> {

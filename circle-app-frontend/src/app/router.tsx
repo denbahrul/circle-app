@@ -1,19 +1,19 @@
-import { BrowserRouter, createBrowserRouter, Route, RouterProvider, Routes } from "react-router-dom";
+import { useEffect } from "react";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { getUserLogged } from "../features/auth/auth-slice";
+import { useAppDispatch } from "../hooks/use-store";
+import AuthROutes from "./pages/_auth_routes";
+import ProtectedRoutes from "./pages/_protected-route";
 import ForgotPassword from "./pages/auth/forgot-password";
 import Login from "./pages/auth/login";
 import Register from "./pages/auth/register";
 import ResetPassword from "./pages/auth/reset-password";
-import Home from "./pages/main/home";
-import Search from "./pages/main/search";
-import Follows from "./pages/main/follows";
-import Profile from "./pages/main/profile";
-import DetailPost from "./pages/main/detail-post";
 import DetailImage from "./pages/main/detail-image";
-import { useEffect } from "react";
-import { getUserLogged } from "../features/auth/auth-slice";
-import { useAppDispatch, useAppSelector } from "../hooks/use-store";
-import ProtectedRoutes from "./pages/_protected-route";
-import AuthROutes from "./pages/_auth_routes";
+import DetailPost from "./pages/main/detail-post";
+import Follows from "./pages/main/follows";
+import Home from "./pages/main/home";
+import MyProfile from "./pages/main/my-profile";
+import Search from "./pages/main/search";
 
 export default function RouterApp() {
   const dispatch = useAppDispatch();
@@ -60,9 +60,13 @@ export default function RouterApp() {
           element: <Follows />,
         },
         {
-          path: "/profile",
-          element: <Profile />,
+          path: "/my-profile",
+          element: <MyProfile />,
         },
+        // {
+        //   path: "/profile",
+        //   element: <Profile />,
+        // },
         {
           path: "/detail-post",
           element: <DetailPost />,

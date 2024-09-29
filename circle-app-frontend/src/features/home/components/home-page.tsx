@@ -22,8 +22,6 @@ export default function HomePage() {
     });
   }, []);
 
-  console.log("threads", threads);
-
   return (
     <Box mt={4}>
       <Text padding={4} fontSize={"28px"} fontWeight={700} lineHeight={"28px"}>

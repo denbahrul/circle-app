@@ -387,7 +387,7 @@
         ]
       }
     },
-    "/api/v1/threads/reply": {
+    "/api/v1/threads/{id}/reply": {
       "post": {
         "tags": [
           "Reaction"
@@ -395,6 +395,14 @@
         "summary": "Create new Reply",
         "description": "",
         "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
           {
             "name": "Authorization",
             "in": "header",
@@ -611,9 +619,6 @@
       "createReplySchema": {
         "type": "object",
         "properties": {
-          "threadId": {
-            "type": "integer"
-          },
           "content": {
             "type": "string"
           },

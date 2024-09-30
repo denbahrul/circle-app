@@ -1,9 +1,9 @@
 import { Box, Button, Flex, Image, Input, FormControl, Spinner, Text, Avatar } from "@chakra-ui/react";
-import { usePostThread } from "../../features/home/hooks/use-post-form";
-import { useAppSelector } from "../../hooks/use-store";
+import { usePostReply } from "../hooks/use-post-reply";
+import { useAppSelector } from "../../../hooks/use-store";
 
-export default function FormPost({ placeholder, buttonTitle }: { placeholder: string; buttonTitle: string }) {
-  const { register, handleSubmit, errors, isSubmitting, onSubmit } = usePostThread();
+export default function FormReply({ placeholder, buttonTitle, threadId }: { placeholder: string; buttonTitle: string; threadId: number }) {
+  const { register, handleSubmit, errors, isSubmitting, onSubmit } = usePostReply({ threadId });
   const user = useAppSelector((state) => state.auth.entities);
 
   return (

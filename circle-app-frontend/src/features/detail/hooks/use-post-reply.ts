@@ -7,7 +7,7 @@ import { PostThradInput, postThreadSchema } from "../../home/schemas/post-thread
 import { ThreadDetailResponseDTO } from "../types/thread-detail.dto";
 import { ThreadPostRequestDTO } from "../../home/types/thread.dto";
 
-export function usePostThread() {
+export function usePostReply({ threadId }: { threadId: number }) {
   const {
     register,
     handleSubmit,
@@ -18,7 +18,7 @@ export function usePostThread() {
 
   async function onSubmit({ content }: PostThradInput) {
     try {
-      const response = await apiV1.post<null, { data: ThreadDetailResponseDTO }, ThreadPostRequestDTO>("/threads", { content });
+      const response = await apiV1.post<null, { data: ThreadDetailResponseDTO }, ThreadPostRequestDTO>(`/threads/${threadId}/reply`, { content });
       alert(response.data.message);
     } catch (error) {
       if (axios.isAxiosError(error) && error.response) {

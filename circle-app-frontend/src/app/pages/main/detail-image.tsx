@@ -33,7 +33,7 @@ export default function DetailImage() {
       </Box>
       {isContentOpen && (
         <Box width={"30%"} id="imageCard" borderLeft={"solid 1px"} borderColor={"brand.borderAbu"}>
-          <PostDetail image="./profile.png" fullName="Cristiano Ronaldo" userName="@cristiano" postContent="okee" />
+          <PostDetail like={20} reply={12} image="./profile.png" fullName="Cristiano Ronaldo" userName="@cristiano" postContent="okee" />
           <FormPost placeholder="Type your reply!" buttonTitle="Reply" />
           <RepliesList />
         </Box>

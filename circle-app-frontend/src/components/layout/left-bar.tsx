@@ -32,7 +32,7 @@ export default function LeftBar() {
         </Flex>
         <Box mt={"auto"}>
           <button onClick={onClick}>
-            <ItemMenu route="/login" menuIcon="./logout.svg" menuTitle="Logout" />
+            <ItemMenu route="/login" menuIcon="/logout.svg" menuTitle="Logout" />
           </button>
         </Box>
       </Flex>

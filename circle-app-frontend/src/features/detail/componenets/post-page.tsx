@@ -2,20 +2,20 @@ import { Box, Flex, Spinner, Text } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import { HiOutlineArrowLeft } from "react-icons/hi";
 import { useParams } from "react-router-dom";
-import FormPost from "../../../components/ui/post-form";
 import { ThreadEntity } from "../../../entities/thread";
 import { apiV1 } from "../../../libs/api";
 import { ThreadDetailResponseDTO } from "../types/thread-detail.dto";
 import PostDetail from "./post-detail";
-import RepliesList from "./replies-list";
 import RepliesItem from "./replies-item";
+import FormReply from "./reply-form";
 
 export default function PostPage() {
   const [threads, setThread] = useState<ThreadEntity>();
   let { id } = useParams();
+  const threadId = Number(id);
 
   async function getThreads() {
-    const response = await apiV1.get<null, { data: ThreadDetailResponseDTO }>(`/threads/${id}`);
+    const response = await apiV1.get<null, { data: ThreadDetailResponseDTO }>(`/threads/${threadId}`);
     const data = response.data.data;
     return { data: data };
   }
@@ -48,7 +48,7 @@ export default function PostPage() {
         like={threads.like.length}
         reply={threads.replies.length}
       />
-      <FormPost placeholder="Type your reply!" buttonTitle="Reply" />
+      <FormReply threadId={threadId} placeholder="Type your reply!" buttonTitle="Reply" />
       {threads.replies.map((reply) => {
         return <RepliesItem image={reply.author.profilePhoto} fullName={reply.author.fullname} userName={reply.author.username} postContent={reply.content} like={10} postImage={reply.image} />;
       })}

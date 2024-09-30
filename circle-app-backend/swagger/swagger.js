@@ -60,9 +60,6 @@ const doc = {
       createReplySchema: {
         type: "object",
         properties: {
-          threadId: {
-            type: "integer",
-          },
           content: {
             type: "string",
           },

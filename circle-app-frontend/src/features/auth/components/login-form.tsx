@@ -19,13 +19,13 @@ export default function LoginForm() {
       </Text>
       <form onSubmit={handleSubmit(onSubmit)}>
         <FormControl display={"flex"} flexDirection={"column"} gap={"12px"}>
-          <Input {...register("email")} placeholder="Email/Username*" rounded={8} padding={5} fontSize={14} fontWeight={500} borderColor={"brand.borderAbu"} />
+          <Input {...register("email")} id="email" type="email" placeholder="Email/Username*" rounded={8} padding={5} fontSize={14} fontWeight={500} borderColor={"brand.borderAbu"} />
           {errors.email && (
             <Text fontSize={13} color={"red"}>
               * {errors.email.message}
             </Text>
           )}
-          <Input {...register("password")} placeholder="Password" rounded={8} padding={5} fontSize={14} fontWeight={500} borderColor={"brand.borderAbu"} />
+          <Input {...register("password")} id="password" type="password" placeholder="Password" rounded={8} padding={5} fontSize={14} fontWeight={500} borderColor={"brand.borderAbu"} />
           {errors.password && (
             <Text fontSize={13} color={"red"}>
               * {errors.password.message}

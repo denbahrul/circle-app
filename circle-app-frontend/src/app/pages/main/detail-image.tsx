@@ -2,9 +2,9 @@ import { Flex, Box, Image } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 import { HiXCircle } from "react-icons/hi";
 import { HiChevronRight, HiChevronLeft } from "react-icons/hi";
-import PostDetail from "../../features/detail/componenets/post-detail";
-import FormPost from "../../components/ui/post-form";
-import RepliesList from "../../features/detail/componenets/replies-list";
+import PostDetail from "../../../features/detail/componenets/post-detail";
+import FormPost from "../../../components/ui/post-form";
+import RepliesList from "../../../features/detail/componenets/replies-list";
 import { useState } from "react";
 
 export default function DetailImage() {
@@ -33,7 +33,7 @@ export default function DetailImage() {
       </Box>
       {isContentOpen && (
         <Box width={"30%"} id="imageCard" borderLeft={"solid 1px"} borderColor={"brand.borderAbu"}>
-          <PostDetail image="./profile.png" fullName="Cristiano Ronaldo" userName="@cristiano" />
+          <PostDetail like={20} reply={12} image="./profile.png" fullName="Cristiano Ronaldo" userName="@cristiano" postContent="okee" />
           <FormPost placeholder="Type your reply!" buttonTitle="Reply" />
           <RepliesList />
         </Box>

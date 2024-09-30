@@ -1,11 +1,11 @@
-import { ThreadEntity } from "../../../entities/thread";
-import PostContent from "../../../components/ui/post-content";
 import { RepliesAction } from "../../../components/ui/post-action";
+import PostContent from "../../../components/ui/post-content";
+import { Thread } from "../../home/types/thread.dto";
 
-export default function RepliesItem({ image, fullName, userName, postImage }: ThreadEntity) {
+export default function RepliesItem({ image, fullName, userName, postContent, postImage, like }: Omit<Thread, "reply">) {
   return (
-    <PostContent image={image} fullName={fullName} userName={userName} postImage={postImage}>
-      <RepliesAction />
+    <PostContent image={image} fullName={fullName} userName={userName} postContent={postContent} postImage={postImage}>
+      <RepliesAction like={like} />
     </PostContent>
   );
 }

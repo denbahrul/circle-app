@@ -24,6 +24,9 @@ model User {
 
   role RoleEnum @default(MEMBER)
 
+  following Follow [] @relation(name: "following")
+  followers Follow [] @relation(name: "followers")
+
   threads Thread[]
   replies Reply[]
   likes Like[]
@@ -32,6 +35,19 @@ model User {
   updateAt DateTime @default(now()) @updatedAt
 
   @@map("users")
+}
+
+model Follow {
+  id Int @id @default(autoincrement())
+
+  followingId Int
+  followersId Int
+
+  following User @relation(name: "following", fields: [followingId], references: [id])
+  followers User @relation(name: "followers", fields: [followersId], references: [id])
+
+  createdAt DateTime @default(now())
+  updateAt DateTime @default(now()) @updatedAt
 }
 
 enum RoleEnum {

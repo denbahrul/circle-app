@@ -41,7 +41,7 @@ export default function RightBar() {
           </Text>
           <Flex direction={"column"} gap={4}>
             {others.slice(0, 5).map((other) => {
-              return <OthersAccountItem key={other.id} image={other.profilePhoto} fullName={other.fullname} userName={other.username} isFollow="Follow" />;
+              return <OthersAccountItem id={other.id} key={other.id} image={other.profilePhoto} fullName={other.fullname} userName={other.username} isFollow="Follow" />;
             })}
           </Flex>
         </Box>

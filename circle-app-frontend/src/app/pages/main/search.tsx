@@ -9,7 +9,6 @@ import { useSearchParams } from "react-router-dom";
 import { useForm } from "react-hook-form";
 
 export default function Search() {
-  const [searchParams, setSearchParams] = useSearchParams();
   const [others, setOther] = useState([]);
   const {
     register,
@@ -19,10 +18,6 @@ export default function Search() {
   } = useForm();
 
   const keyword = watch("keyword");
-
-  function changeSearchParams() {
-    setSearchParams({ keyword });
-  }
 
   async function getThreads() {
     const response = await apiV1.get("/users");
@@ -51,7 +46,7 @@ export default function Search() {
         {keyword !== "" ? (
           <Flex mt={4} direction={"column"} gap={4}>
             {otherSearch.map((other) => {
-              return <OthersAccountItem key={other.id} image={other.profilePhoto} fullName={other.fullname} userName={other.username} bio={other.bio} isFollow="Follow" />;
+              return <OthersAccountItem id={other.id} key={other.id} image={other.profilePhoto} fullName={other.fullname} userName={other.username} bio={other.bio} isFollow="Follow" />;
             })}
           </Flex>
         ) : (

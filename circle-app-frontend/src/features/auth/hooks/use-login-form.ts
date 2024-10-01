@@ -8,6 +8,7 @@ import Cookies from "js-cookie";
 import { apiV1 } from "../../../libs/api";
 import { useAppDispatch } from "../../../hooks/use-store";
 import { getUserLogged, setUser } from "../auth-slice";
+import Swal from "sweetalert2";
 
 export function useLoginForm() {
   const {
@@ -28,7 +29,16 @@ export function useLoginForm() {
       const { accessToken, user } = response.data.data;
 
       Cookies.set("token", accessToken, { expires: 2 });
-      alert(response.data.message);
+
+      Swal.fire({
+        icon: "success",
+        title: response.data.message,
+        showConfirmButton: false,
+        background: "#1D1D1D",
+        color: "#fff",
+        iconColor: "#04A51E",
+        timer: 1000,
+      });
 
       dispatch(setUser(user));
 

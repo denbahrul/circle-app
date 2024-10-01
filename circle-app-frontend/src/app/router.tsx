@@ -14,6 +14,7 @@ import Follows from "./pages/main/follows";
 import Home from "./pages/main/home";
 import MyProfile from "./pages/main/my-profile";
 import Search from "./pages/main/search";
+import Profile from "./pages/main/others-profile";
 
 export default function RouterApp() {
   const dispatch = useAppDispatch();
@@ -63,10 +64,10 @@ export default function RouterApp() {
           path: "/my-profile",
           element: <MyProfile />,
         },
-        // {
-        //   path: "/profile",
-        //   element: <Profile />,
-        // },
+        {
+          path: "/profile/:id",
+          element: <Profile />,
+        },
         {
           path: "/detail-post/:id",
           element: <DetailPost />,

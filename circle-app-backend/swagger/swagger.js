@@ -76,6 +76,14 @@ const doc = {
           },
         },
       },
+      followSchema: {
+        type: "object",
+        properties: {
+          followersId: {
+            type: "integer",
+          },
+        },
+      },
     },
   },
 };

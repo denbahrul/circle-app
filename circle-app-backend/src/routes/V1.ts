@@ -5,6 +5,7 @@ import authControllers from "../controllers/auth.controllers";
 import { authentication } from "../middlewares/authentication";
 import reactionController from "../controllers/reaction.controller";
 import followController from "../controllers/follow.controller";
+import { upload } from "../middlewares/upload-file";
 
 export const routerV1 = express.Router();
 
@@ -27,7 +28,7 @@ routerV1.delete("/unfollow", authentication, followController.unfollow);
 routerV1.get("/threads", authentication, ThreadController.findAll);
 routerV1.get("/threads/:id", authentication, ThreadController.findOne);
 routerV1.get("/user/threads/:id", authentication, ThreadController.findByUser);
-routerV1.post("/threads", authentication, ThreadController.create);
+routerV1.post("/threads", authentication, upload.single("image"), ThreadController.create);
 routerV1.delete("/threads/:id", authentication, ThreadController.delete);
 
 // THREAD REACTION

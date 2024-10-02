@@ -54,6 +54,7 @@ const doc = {
           },
           image: {
             type: "string",
+            format: "binary",
           },
         },
       },

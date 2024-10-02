@@ -13,6 +13,17 @@ class UserServices {
   async getUserById(id: number): Promise<User | null> {
     const user = await prisma.user.findUnique({
       where: { id },
+      include: {
+        followers: true,
+        following: true,
+        threads: {
+          include: {
+            author: true,
+            like: true,
+            replies: true,
+          },
+        },
+      },
     });
 
     if (!user) {

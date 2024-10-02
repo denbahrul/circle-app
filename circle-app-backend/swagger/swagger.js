@@ -54,6 +54,7 @@ const doc = {
           },
           image: {
             type: "string",
+            format: "binary",
           },
         },
       },
@@ -72,6 +73,14 @@ const doc = {
         type: "object",
         properties: {
           threadId: {
+            type: "integer",
+          },
+        },
+      },
+      followSchema: {
+        type: "object",
+        properties: {
+          followersId: {
             type: "integer",
           },
         },

@@ -1,10 +1,9 @@
 import { Box, Flex, Spinner, Text } from "@chakra-ui/react";
-import ProfileHeading from "../ui/profile-heading";
-import OthersAccountItem from "../ui/others-account-item";
-import { useAppSelector } from "../../hooks/use-store";
 import { useEffect, useState } from "react";
+import { useAppSelector } from "../../hooks/use-store";
 import { apiV1 } from "../../libs/api";
-import { UserEntity } from "../../entities/user";
+import OthersAccountItem from "../ui/others-account-item";
+import ProfileHeading from "../ui/profile-heading";
 
 export default function RightBar() {
   const user = useAppSelector((state) => state.auth.entities);
@@ -33,7 +32,7 @@ export default function RightBar() {
           <Text fontSize={"20px"} fontWeight={700} lineHeight={"28px"} mb={4}>
             My Profile
           </Text>
-          <ProfileHeading profilePhoto={user.profilePhoto} fullname={user.fullname} username={user.username} bio={user.bio} thumbnailH="100px" />
+          <ProfileHeading profilePhoto={user.profilePhoto} fullname={user.fullname} username={user.username} bio={user.bio} followers={user.followers.length} following={user.following.length} thumbnailH="100px" />
         </Box>
         <Box backgroundColor={"brand.backgroundBox"} padding={"12px 20px 20px 20px"} rounded={12}>
           <Text fontSize={"20px"} fontWeight={700} lineHeight={"28px"} mb={4}>
@@ -41,7 +40,7 @@ export default function RightBar() {
           </Text>
           <Flex direction={"column"} gap={4}>
             {others.slice(0, 5).map((other) => {
-              return <OthersAccountItem key={other.id} image={other.profilePhoto} fullName={other.fullname} userName={other.username} isFollow="Follow" />;
+              return <OthersAccountItem id={other.id} key={other.id} image={other.profilePhoto} fullName={other.fullname} userName={other.username} isFollow="Follow" />;
             })}
           </Flex>
         </Box>

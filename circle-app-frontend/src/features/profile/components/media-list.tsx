@@ -6,30 +6,30 @@ import { useEffect, useState } from "react";
 import { apiV1 } from "../../../libs/api";
 import { ThreadResponseDTO } from "../../home/types/thread.dto";
 
-export default function MediaList() {
-  const [medias, setMedia] = useState<ThreadEntity[]>([]);
-  const user = useAppSelector((state) => state.auth.entities);
+export default function MediaList({ threads }) {
+  // const [medias, setMedia] = useState<ThreadEntity[]>([]);
+  // const user = useAppSelector((state) => state.auth.entities);
 
-  async function getUserThread() {
-    const response = await apiV1.get<null, { data: ThreadResponseDTO }>(`/user/threads/${user.id}`);
-    const data = response.data.data;
-    return { data: data };
-  }
+  // async function getUserThread() {
+  //   const response = await apiV1.get<null, { data: ThreadResponseDTO }>(`/user/threads/${user.id}`);
+  //   const data = response.data.data;
+  //   return { data: data };
+  // }
 
-  useEffect(() => {
-    getUserThread().then(({ data }) => {
-      setMedia(data);
-    });
-  }, []);
+  // useEffect(() => {
+  //   getUserThread().then(({ data }) => {
+  //     setMedia(data);
+  //   });
+  // }, []);
 
   return (
     <Grid id="media" templateColumns={"repeat(3, 1fr)"} gap={1} padding={"8px 4px"}>
-      {medias.map((media) => {
-        if (media.image !== null) {
+      {threads.map((thread) => {
+        if (thread.image !== null) {
           return (
-            <Link key={media.id} to={"/detail-image"}>
+            <Link key={threads.id} to={"/detail-image/"}>
               <AspectRatio width={"100%"} ratio={1}>
-                <Image src={media.image} rounded={4} objectFit="cover" />
+                <Image src={thread.image} rounded={4} objectFit="cover" />
               </AspectRatio>
             </Link>
           );

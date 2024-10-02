@@ -3,8 +3,9 @@ import { usePostThread } from "../../features/home/hooks/use-post-form";
 import { useAppSelector } from "../../hooks/use-store";
 
 export default function FormPost({ placeholder, buttonTitle }: { placeholder: string; buttonTitle: string }) {
-  const { register, handleSubmit, errors, isSubmitting, onSubmit } = usePostThread();
+  const { register, handleSubmit, errors, isSubmitting, onSubmit, watch } = usePostThread();
   const user = useAppSelector((state) => state.auth.entities);
+  const content = watch("content");
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
@@ -17,13 +18,14 @@ export default function FormPost({ placeholder, buttonTitle }: { placeholder: st
               * {errors.content.message}
             </Text>
           )}
+          <Input {...register("image")} type="file" variant={"unstyled"} border={"none"} placeholder={placeholder} />
         </Box>
         <Flex alignItems={"center"} gap={4}>
           <Image src="/gallery-add.svg" alt="gallery" height={"24px"} />
           <Button
             type="submit"
-            backgroundColor={"brand.green-dark"}
-            color={"brand.white-dark"}
+            backgroundColor={content ? "brand.green" : "brand.green-dark"}
+            color={content ? "white" : "brand.white-dark"}
             height={"33px"}
             justifyItems={"center"}
             rounded={"full"}
@@ -32,6 +34,7 @@ export default function FormPost({ placeholder, buttonTitle }: { placeholder: st
             fontSize={"14px"}
             fontWeight={700}
             lineHeight={"17px"}
+            disabled={isSubmitting}
           >
             {isSubmitting ? <Spinner /> : `${buttonTitle}`}
           </Button>

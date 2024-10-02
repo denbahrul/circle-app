@@ -30,7 +30,17 @@ export default function HomePage() {
       <CreatePost />
       {threads.map((threads) => {
         return (
-          <PostItem id={threads.id} key={threads.id} fullName={threads.author.fullname} userName={threads.author.username} postContent={threads.content} postImage={threads.image} like={threads.like.length} reply={threads.replies.length} />
+          <PostItem
+            id={threads.id}
+            key={threads.id}
+            profilePhoto={threads.author.profilePhoto}
+            fullName={threads.author.fullname}
+            userName={threads.author.username}
+            postContent={threads.content}
+            postImage={threads.image}
+            like={threads.like.length}
+            reply={threads.replies.length}
+          />
         );
       })}
     </Box>

@@ -188,6 +188,98 @@
         ]
       }
     },
+    "/api/v1/follow": {
+      "post": {
+        "tags": [
+          "Follow"
+        ],
+        "summary": "Follow User",
+        "description": "",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/followSchema"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/unfollow": {
+      "delete": {
+        "tags": [
+          "Follow"
+        ],
+        "summary": "Unollow User",
+        "description": "",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "example": "any"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/v1/threads": {
       "get": {
         "tags": [
@@ -255,7 +347,7 @@
         "requestBody": {
           "required": true,
           "content": {
-            "application/json": {
+            "multipart/form-data": {
               "schema": {
                 "$ref": "#/components/schemas/createThreadSchema"
               }
@@ -612,7 +704,8 @@
             "type": "string"
           },
           "image": {
-            "type": "string"
+            "type": "string",
+            "format": "binary"
           }
         }
       },
@@ -631,6 +724,14 @@
         "type": "object",
         "properties": {
           "threadId": {
+            "type": "integer"
+          }
+        }
+      },
+      "followSchema": {
+        "type": "object",
+        "properties": {
+          "followersId": {
             "type": "integer"
           }
         }

@@ -46,6 +46,10 @@ class AuthServices {
       where: {
         email: data.email,
       },
+      include: {
+        followers: true,
+        following: true,
+      },
     });
 
     if (!user) {

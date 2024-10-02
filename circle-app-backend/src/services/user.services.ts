@@ -14,6 +14,8 @@ class UserServices {
     const user = await prisma.user.findUnique({
       where: { id },
       include: {
+        followers: true,
+        following: true,
         threads: {
           include: {
             author: true,

@@ -3,9 +3,9 @@ import { Link } from "react-router-dom";
 
 interface Account {
   id: number;
-  image: string;
+  image?: string;
   fullName: string;
-  userName: string;
+  userName?: string;
   bio?: string;
   isFollow: string;
 }

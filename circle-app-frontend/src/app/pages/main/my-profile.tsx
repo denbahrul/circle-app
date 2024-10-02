@@ -38,7 +38,7 @@ export default function MyProfile() {
       </Link>
 
       <Box padding={4}>
-        <ProfileHeading profilePhoto={user.profilePhoto} fullname={user.fullname} username={user.username} bio={user.bio} thumbnailH="140px" />
+        <ProfileHeading profilePhoto={user.profilePhoto} fullname={user.fullname} username={user.username} bio={user.bio} following={user.following.length} followers={user.followers.length} thumbnailH="140px" />
       </Box>
       <ProfileTabs threads={threads} />
     </AppLayout>

@@ -5,11 +5,11 @@ import { useParams } from "react-router-dom";
 import { ThreadEntity } from "../../../entities/thread";
 import { apiV1 } from "../../../libs/api";
 import { ThreadDetailResponseDTO } from "../types/thread-detail.dto";
-import PostDetail from "./post-detail";
+import ThreadDetail from "./thread-detail";
 import RepliesItem from "./replies-item";
 import FormReply from "./reply-form";
 
-export default function PostPage() {
+export default function ThreadDetailPage() {
   const [threads, setThread] = useState<ThreadEntity>();
   let { id } = useParams();
   const threadId = Number(id);
@@ -39,7 +39,8 @@ export default function PostPage() {
           Status
         </Text>
       </Flex>
-      <PostDetail
+      <ThreadDetail
+        authorId={threads.authorId}
         id={threads.id}
         profilePhoto={threads?.author.profilePhoto}
         fullName={threads.author.fullname}
@@ -52,7 +53,7 @@ export default function PostPage() {
       />
       <FormReply threadId={threadId} placeholder="Type your reply!" buttonTitle="Reply" />
       {threads.replies.map((reply) => {
-        return <RepliesItem id={reply.id} profilePhoto={reply.author.profilePhoto} fullName={reply.author.fullname} userName={reply.author.username} postContent={reply.content} like={10} postImage={reply.image} />;
+        return <RepliesItem authorId={reply.authorId} id={reply.id} profilePhoto={reply.author.profilePhoto} fullName={reply.author.fullname} userName={reply.author.username} postContent={reply.content} like={10} postImage={reply.image} />;
       })}
     </Box>
   );

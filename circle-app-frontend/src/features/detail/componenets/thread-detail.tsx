@@ -3,12 +3,12 @@ import { Link } from "react-router-dom";
 import { Thread } from "../../home/types/thread.dto";
 import { PostAction } from "../../../components/ui/thread-action";
 
-export default function PostDetail({ profilePhoto, fullName, userName, postImage, postContent, like, reply, id, isLike }: Thread & { isLike: boolean }) {
+export default function ThreadDetail({ profilePhoto, fullName, userName, postImage, postContent, like, reply, id, isLike, authorId }: Thread & { isLike: boolean; authorId: number }) {
   return (
     <Flex direction={"column"} gap={3} padding={4} borderBottom={"solid 1px"} borderColor={"brand.borderAbu"}>
       <Flex gap={3}>
         <Avatar src={profilePhoto} name={fullName} borderColor={"brand.backgroundBox"} height={"40px"} width={"40px"} rounded={"full"} objectFit="cover" />
-        <Link to="profile">
+        <Link to={`/profile/${authorId}`}>
           <Box>
             <Text fontSize={"14px"} mb={1} fontWeight={700} lineHeight={"16px"}>
               {fullName}

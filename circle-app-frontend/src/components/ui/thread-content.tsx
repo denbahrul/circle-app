@@ -2,12 +2,12 @@ import { Avatar, Flex, Image, Text } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 import { Thread } from "../../features/home/types/thread.dto";
 
-export default function PostContent({ profilePhoto, fullName, userName, postContent, postImage, children, id }: Omit<Thread, "like" | "reply"> & { children: React.ReactNode }) {
+export default function PostContent({ profilePhoto, fullName, userName, postContent, postImage, children, authorId }: Omit<Thread, "like" | "reply"> & { children: React.ReactNode; authorId: number }) {
   return (
     <Flex gap={4} padding={4} borderBottom={"solid 1px"} borderColor={"brand.borderAbu"}>
       <Avatar src={profilePhoto} name={fullName} height={"40px"} width={"40px"} />
       <Flex direction={"column"} gap={2}>
-        <Link to="/profile">
+        <Link to={`/profile/${authorId}`}>
           <Flex gap={1}>
             <Text fontSize={"14px"} mb={1} fontWeight={700} lineHeight={"16px"}>
               {fullName}

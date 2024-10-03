@@ -4,7 +4,7 @@ import PostList from "./post-list";
 import MediaList from "./media-list";
 import { Thread } from "../../home/types/thread.dto";
 
-export default function ProfileTabs({ threads }) {
+export default function ProfileTabs({ threads }: { threads: Thread[] }) {
   return (
     <Tabs isFitted variant={"unstyled"}>
       <TabList borderBottom="1px solid" borderColor="brand.borderAbu">

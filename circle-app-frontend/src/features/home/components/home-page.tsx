@@ -31,6 +31,7 @@ export default function HomePage() {
       {threads.map((threads) => {
         return (
           <PostItem
+            authorId={threads.authorId}
             id={threads.id}
             key={threads.id}
             profilePhoto={threads.author.profilePhoto}

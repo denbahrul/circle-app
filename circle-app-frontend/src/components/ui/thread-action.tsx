@@ -5,6 +5,7 @@ import { useState } from "react";
 
 export function PostAction({ like, reply, id, isLike }: { like: number; reply: number; id: number; isLike: boolean }) {
   const [isThreadLike, setIsThreadLike] = useState<boolean>(isLike);
+  const [likeCount, setLikeCount] = useState<number>(like);
 
   async function onLike(threadId: number) {
     try {
@@ -12,19 +13,21 @@ export function PostAction({ like, reply, id, isLike }: { like: number; reply: n
       if (isThreadLike) {
         response = await apiV1.delete(`/threads/like/${threadId}`);
         setIsThreadLike(false);
+        setLikeCount(likeCount - 1);
       } else {
         response = await apiV1.post("/threads/like", { threadId });
         setIsThreadLike(true);
+        setLikeCount(likeCount + 1);
       }
-      Swal.fire({
-        icon: "success",
-        title: response.data.message,
-        showConfirmButton: false,
-        background: "#1D1D1D",
-        color: "#fff",
-        iconColor: "#04A51E",
-        timer: 800,
-      });
+      // Swal.fire({
+      //   icon: "success",
+      //   title: response.data.message,
+      //   showConfirmButton: false,
+      //   background: "#1D1D1D",
+      //   color: "#fff",
+      //   iconColor: "#04A51E",
+      //   timer: 800,
+      // });
     } catch (error) {
       console.log(error);
     }
@@ -35,7 +38,7 @@ export function PostAction({ like, reply, id, isLike }: { like: number; reply: n
       <Flex gap={2} alignItems={"center"}>
         <Image src={isThreadLike ? "/heart-red.svg" : "/heart.svg"} alt="like" height={"18px"} />
         <Text fontSize={"14px"} fontWeight={400} lineHeight={"20px"} color={"brand.fontSecondary"}>
-          {like}
+          {likeCount}
         </Text>
       </Flex>
       <Flex gap={1} alignItems={"center"} alignContent={"center"}>

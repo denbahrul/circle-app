@@ -40,17 +40,19 @@ export default function PostPage() {
         </Text>
       </Flex>
       <PostDetail
-        image={threads?.author.profilePhoto}
+        id={threads.id}
+        profilePhoto={threads?.author.profilePhoto}
         fullName={threads.author.fullname}
         userName={threads?.author.username}
         postContent={threads.content}
         postImage={threads?.image}
+        isLike={threads.isLike}
         like={threads.like.length}
         reply={threads.replies.length}
       />
       <FormReply threadId={threadId} placeholder="Type your reply!" buttonTitle="Reply" />
       {threads.replies.map((reply) => {
-        return <RepliesItem image={reply.author.profilePhoto} fullName={reply.author.fullname} userName={reply.author.username} postContent={reply.content} like={10} postImage={reply.image} />;
+        return <RepliesItem id={reply.id} profilePhoto={reply.author.profilePhoto} fullName={reply.author.fullname} userName={reply.author.username} postContent={reply.content} like={10} postImage={reply.image} />;
       })}
     </Box>
   );

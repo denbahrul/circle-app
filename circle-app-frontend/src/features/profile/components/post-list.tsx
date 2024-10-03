@@ -1,5 +1,5 @@
 import { Box } from "@chakra-ui/react";
-import PostItem from "../../../components/ui/post-item";
+import PostItem from "../../../components/ui/thread-item";
 import { apiV1 } from "../../../libs/api";
 import { useAppSelector } from "../../../hooks/use-store";
 import { Thread, ThreadResponseDTO } from "../../home/types/thread.dto";

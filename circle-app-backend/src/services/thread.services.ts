@@ -15,7 +15,7 @@ class ThreadServies {
     };
   }
 
-  async getAllThreads(): Promise<SuccessResponse<Thread[]>> {
+  async getAllThreads(userId: number): Promise<SuccessResponse<Thread[]>> {
     const threads = await prisma.thread.findMany({
       include: {
         author: true,
@@ -24,14 +24,22 @@ class ThreadServies {
       },
     });
 
+    const threadWithIsLike = threads.map((thread) => {
+      const isLike = thread.like.some((like) => like.authorId === userId);
+      return {
+        ...thread,
+        isLike,
+      };
+    });
+
     return {
       status: "success",
       message: "Threads retrived",
-      data: threads,
+      data: threadWithIsLike,
     };
   }
 
-  async getThreadById(id: number): Promise<SuccessResponse<Thread>> {
+  async getThreadById(id: number, userId: number): Promise<SuccessResponse<any>> {
     const thread = await prisma.thread.findFirst({
       where: { id },
       include: {
@@ -46,15 +54,17 @@ class ThreadServies {
     if (!thread) {
       throw {
         status: 404,
-        message: "User Not Found!",
+        message: "Thread Not Found!",
         code: "USER_NOT_EXIST",
       } as customError;
     }
 
+    const isLike = thread.like.some((like) => like.authorId === userId);
+
     return {
       status: "success",
       message: "Thread retrived",
-      data: thread,
+      data: { ...thread, isLike },
     };
   }
 

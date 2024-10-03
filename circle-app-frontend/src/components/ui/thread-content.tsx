@@ -2,7 +2,7 @@ import { Avatar, Flex, Image, Text } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 import { Thread } from "../../features/home/types/thread.dto";
 
-export default function PostContent({ profilePhoto, fullName, userName, postContent, postImage, children }: Omit<Thread, "like" | "reply"> & { children: React.ReactNode }) {
+export default function PostContent({ profilePhoto, fullName, userName, postContent, postImage, children, id }: Omit<Thread, "like" | "reply"> & { children: React.ReactNode }) {
   return (
     <Flex gap={4} padding={4} borderBottom={"solid 1px"} borderColor={"brand.borderAbu"}>
       <Avatar src={profilePhoto} name={fullName} height={"40px"} width={"40px"} />

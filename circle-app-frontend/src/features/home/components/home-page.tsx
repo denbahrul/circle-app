@@ -1,5 +1,5 @@
 import { Box, Button, Text } from "@chakra-ui/react";
-import PostItem from "../../../components/ui/post-item";
+import PostItem from "../../../components/ui/thread-item";
 import CreatePost from "./create-post";
 import axios from "axios";
 import { ThreadEntity } from "../../../entities/thread";
@@ -38,6 +38,7 @@ export default function HomePage() {
             userName={threads.author.username}
             postContent={threads.content}
             postImage={threads.image}
+            isLike={threads.isLike}
             like={threads.like.length}
             reply={threads.replies.length}
           />

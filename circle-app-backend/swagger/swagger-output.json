@@ -661,6 +661,50 @@
         }
       }
     },
+    "/api/v1/threads/islike": {
+      "post": {
+        "tags": [
+          "Reaction"
+        ],
+        "summary": "Thread isLike",
+        "description": "",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/likeSchema"
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/v1/threads/like/{id}": {
       "delete": {
         "tags": [

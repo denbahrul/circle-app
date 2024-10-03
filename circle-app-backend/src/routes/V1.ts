@@ -36,6 +36,7 @@ routerV1.delete("/threads/:id", authentication, ThreadController.delete);
 routerV1.post("/threads/:id/reply", authentication, reactionController.reply);
 routerV1.delete("/threads/reply/:id", authentication, reactionController.deleteReply);
 routerV1.post("/threads/like", authentication, reactionController.like);
+routerV1.post("/threads/islike", authentication, reactionController.isLike);
 routerV1.delete("/threads/like/:id", authentication, reactionController.unlike);
 
 //DASHBOARD ADMIN

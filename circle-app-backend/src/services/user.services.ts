@@ -2,6 +2,7 @@ import { PrismaClient, User } from "@prisma/client";
 import { UpdateUSerDTO } from "../dto/user.dto";
 import { error } from "console";
 import { customError } from "../types/custom-error";
+import { SuccessResponse } from "../types/success-respons";
 
 const prisma = new PrismaClient();
 
@@ -41,10 +42,10 @@ class UserServices {
   //   return await prisma.user.create({ data });
   // }
 
-  async updateUser(data: UpdateUSerDTO): Promise<User | null> {
+  async updateUser(data: UpdateUSerDTO): Promise<SuccessResponse<User | null>> {
     const user = await prisma.user.findUnique({
       where: {
-        id: 8,
+        id: data.id,
       },
     });
 
@@ -72,10 +73,15 @@ class UserServices {
       user.profilePhoto = data.profilePhoto;
     }
 
-    return await prisma.user.update({
+    await prisma.user.update({
       data: user,
-      where: { id: 8 },
+      where: { id: data.id },
     });
+
+    return {
+      status: "success",
+      message: "Profile successfully edited",
+    };
   }
 }
 

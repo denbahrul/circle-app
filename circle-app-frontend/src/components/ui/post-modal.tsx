@@ -1,11 +1,12 @@
-import { Avatar, Box, Button, FormControl, Image, ModalCloseButton, ModalContent, Spinner, Text, Textarea } from "@chakra-ui/react";
+import { Avatar, Box, Button, FormControl, Image, Input, ModalCloseButton, ModalContent, Spinner, Text, Textarea } from "@chakra-ui/react";
 import { HiOutlineXCircle } from "react-icons/hi";
 import { usePostThread } from "../../features/home/hooks/use-post-form";
 import { useAppSelector } from "../../hooks/use-store";
 
 export default function CreatePostModal() {
-  const { register, handleSubmit, errors, isSubmitting, onSubmit } = usePostThread();
+  const { register, handleSubmit, errors, isSubmitting, onSubmit, watch } = usePostThread();
   const user = useAppSelector((state) => state.auth.entities);
+  const content = watch("content");
 
   return (
     <ModalContent maxW={"740px"} backgroundColor={"brand.backgroundCircle"} rounded={15}>
@@ -18,6 +19,7 @@ export default function CreatePostModal() {
             <Avatar src={user.profilePhoto} name={user.fullname} borderColor={"brand.backgroundBox"} height={"40px"} width={"40px"} rounded={"full"} objectFit="cover" />
             <Box flex={"1"}>
               <Textarea {...register("content")} variant={"unstyled"} border={"none"} placeholder="What is happening?!" />
+              <Input {...register("image")} type="file" variant={"unstyled"} border={"none"} />
             </Box>
           </FormControl>
           {errors.content && (
@@ -30,8 +32,8 @@ export default function CreatePostModal() {
           <Image src="/gallery-add.svg" alt="gallery" height={"24px"} />
           <Button
             type="submit"
-            backgroundColor={"brand.green-dark"}
-            color={"brand.white-dark"}
+            backgroundColor={content ? "brand.green" : "brand.green-dark"}
+            color={content ? "white" : "brand.white-dark"}
             height={"33px"}
             justifyItems={"center"}
             rounded={"full"}
@@ -40,6 +42,7 @@ export default function CreatePostModal() {
             fontSize={"14px"}
             fontWeight={700}
             lineHeight={"17px"}
+            disabled={isSubmitting}
           >
             {isSubmitting ? <Spinner /> : "Post"}
           </Button>

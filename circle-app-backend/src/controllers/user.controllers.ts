@@ -43,8 +43,23 @@ class UserController {
   async update(req: Request, res: Response) {
     // #swagger.tags = ['Users']
     // #swagger.summary = 'Update existing user'
+    /*  #swagger.requestBody = {
+            required: true,
+            content: {
+                "application/json": {
+                    schema: {
+                        $ref: "#/components/schemas/profileEditSchema"
+                    }  
+                }
+            }
+        } 
+    */
     try {
-      const value = req.body;
+      const id = (req as any).user.id;
+      const value = {
+        ...req.body,
+        id: id,
+      };
 
       const user = await UserServices.updateUser(value);
       res.json(user);

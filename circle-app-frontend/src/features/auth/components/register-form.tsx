@@ -31,7 +31,7 @@ export default function RegisterForm() {
               * {errors.password.message}
             </Text>
           )}
-          <Button type="submit" backgroundColor={"brand.green"} color={"white"} fontSize={20}>
+          <Button type="submit" backgroundColor={"brand.green"} color={"white"} fontSize={20} disabled={isSubmitting}>
             {isSubmitting ? <Spinner /> : "Create"}
           </Button>
         </Box>

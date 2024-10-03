@@ -280,7 +280,7 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "id": {
+                  "userId": {
                     "example": "any"
                   }
                 }
@@ -288,6 +288,40 @@
             }
           }
         }
+      }
+    },
+    "/api/v1/follows": {
+      "get": {
+        "tags": [
+          "Follow"
+        ],
+        "summary": "Following and Followers List",
+        "description": "",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
       }
     },
     "/api/v1/threads": {

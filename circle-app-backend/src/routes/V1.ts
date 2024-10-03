@@ -23,6 +23,7 @@ routerV1.patch("/users", authentication, UserController.update);
 // FOLLOW
 routerV1.post("/follow", authentication, followController.follow);
 routerV1.delete("/unfollow", authentication, followController.unfollow);
+routerV1.get("/follows", authentication, followController.followList);
 
 // THREADS
 routerV1.get("/threads", authentication, ThreadController.findAll);

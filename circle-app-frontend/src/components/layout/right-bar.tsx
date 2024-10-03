@@ -32,7 +32,7 @@ export default function RightBar() {
           <Text fontSize={"20px"} fontWeight={700} lineHeight={"28px"} mb={4}>
             My Profile
           </Text>
-          <ProfileHeading profilePhoto={user.profilePhoto} fullname={user.fullname} username={user.username} bio={user.bio} followers={user.followers.length} following={user.following.length} thumbnailH="100px" />
+          <ProfileHeading profilePhoto={user.profilePhoto} fullname={user.fullname} username={user.username} bio={user.bio} following={user.followers.length} followers={user.following.length} thumbnailH="100px" />
         </Box>
         <Box backgroundColor={"brand.backgroundBox"} padding={"12px 20px 20px 20px"} rounded={12}>
           <Text fontSize={"20px"} fontWeight={700} lineHeight={"28px"} mb={4}>

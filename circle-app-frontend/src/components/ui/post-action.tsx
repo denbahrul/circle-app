@@ -1,6 +1,10 @@
 import { Flex, Image, Text } from "@chakra-ui/react";
+import { apiV1 } from "../../libs/api";
 
 export function PostAction({ like, reply }: { like: number; reply: number }) {
+  async function onLike(threadId: number) {
+    await apiV1.post("/threads/like", threadId);
+  }
   return (
     <Flex gap={4} marginY={1} alignItems={"center"}>
       <Flex gap={2} alignItems={"center"}>

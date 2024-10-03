@@ -45,7 +45,7 @@ export default function ProfilePage() {
       </Link>
 
       <Box padding={4}>
-        <ProfileHeading profilePhoto={user.profilePhoto} fullname={user.fullname} username={user.username} following={user.following.length} followers={user.followers.length} bio={user.bio} thumbnailH="140px" />
+        <ProfileHeading profilePhoto={user.profilePhoto} fullname={user.fullname} username={user.username} followers={user.following.length} following={user.followers.length} bio={user.bio} thumbnailH="140px" />
       </Box>
       <ProfileTabs threads={user.threads} />
     </Box>

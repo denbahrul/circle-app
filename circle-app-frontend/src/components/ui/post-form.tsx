@@ -18,7 +18,7 @@ export default function FormPost({ placeholder, buttonTitle }: { placeholder: st
               * {errors.content.message}
             </Text>
           )}
-          <Input {...register("image")} type="file" variant={"unstyled"} border={"none"} placeholder={placeholder} />
+          <Input {...register("image")} type="file" variant={"unstyled"} border={"none"} />
         </Box>
         <Flex alignItems={"center"} gap={4}>
           <Image src="/gallery-add.svg" alt="gallery" height={"24px"} />

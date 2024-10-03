@@ -46,6 +46,23 @@ const doc = {
           },
         },
       },
+      profileEditSchema: {
+        type: "object",
+        properties: {
+          fullname: {
+            type: "string",
+          },
+          username: {
+            type: "string",
+          },
+          bio: {
+            type: "string",
+          },
+          profilePhoto: {
+            type: "string",
+          },
+        },
+      },
       createThreadSchema: {
         type: "object",
         properties: {

@@ -143,7 +143,17 @@
           {
             "bearerAuth": []
           }
-        ]
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/profileEditSchema"
+              }
+            }
+          }
+        }
       }
     },
     "/api/v1/users/{id}": {
@@ -694,6 +704,23 @@
           "password": {
             "type": "string",
             "format": "password"
+          }
+        }
+      },
+      "profileEditSchema": {
+        "type": "object",
+        "properties": {
+          "fullname": {
+            "type": "string"
+          },
+          "username": {
+            "type": "string"
+          },
+          "bio": {
+            "type": "string"
+          },
+          "profilePhoto": {
+            "type": "string"
           }
         }
       },

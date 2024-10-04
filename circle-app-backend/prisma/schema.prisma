@@ -48,6 +48,8 @@ model Follow {
 
   createdAt DateTime @default(now())
   updateAt DateTime @default(now()) @updatedAt
+  
+  @@unique([followingId, followersId])
 }
 
 enum RoleEnum {

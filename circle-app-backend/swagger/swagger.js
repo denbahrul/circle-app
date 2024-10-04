@@ -97,7 +97,7 @@ const doc = {
       followSchema: {
         type: "object",
         properties: {
-          followersId: {
+          followingId: {
             type: "integer",
           },
         },

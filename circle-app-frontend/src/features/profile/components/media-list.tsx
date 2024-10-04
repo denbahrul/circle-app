@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import { apiV1 } from "../../../libs/api";
 import { Thread, ThreadResponseDTO } from "../../home/types/thread.dto";
 
-export default function MediaList({ threads }: { threads: Thread[] }) {
+export default function MediaList({ threads }: { threads: ThreadEntity[] }) {
   // const [medias, setMedia] = useState<ThreadEntity[]>([]);
   // const user = useAppSelector((state) => state.auth.entities);
 

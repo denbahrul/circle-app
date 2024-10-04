@@ -43,7 +43,7 @@ export default function FollowsTabs() {
                 fullName={follower.followers.fullname}
                 userName={follower.followers.username}
                 bio={follower.followers.bio}
-                isFollow="Follow"
+                isFollow={follower.isFollow}
               />
             );
           })}
@@ -58,7 +58,7 @@ export default function FollowsTabs() {
                 fullName={following.following.fullname}
                 userName={following.following.username}
                 bio={following.following.bio}
-                isFollow="Follow"
+                isFollow={following.isFollow}
               />
             );
           })}

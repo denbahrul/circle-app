@@ -4,10 +4,11 @@ import { useAppSelector } from "../../hooks/use-store";
 import { apiV1 } from "../../libs/api";
 import OthersAccountItem from "../ui/others-account-item";
 import ProfileHeading from "../ui/profile-heading";
+import { UserEntity } from "../../entities/user";
 
 export default function RightBar() {
   const user = useAppSelector((state) => state.auth.entities);
-  const [others, setOther] = useState([]);
+  const [others, setOther] = useState<UserEntity[]>([]);
 
   async function getThreads() {
     const response = await apiV1.get("/users");
@@ -32,7 +33,19 @@ export default function RightBar() {
           <Text fontSize={"20px"} fontWeight={700} lineHeight={"28px"} mb={4}>
             My Profile
           </Text>
-          <ProfileHeading profilePhoto={user.profilePhoto} fullname={user.fullname} username={user.username} bio={user.bio} following={user.followers.length} followers={user.following.length} thumbnailH="100px" />
+          <ProfileHeading
+            id={user.id}
+            isFollow={user.isFollow}
+            isMyProfile={true}
+            buttonTitle={"Edit Profile"}
+            profilePhoto={user.profilePhoto}
+            fullname={user.fullname}
+            username={user.username}
+            bio={user.bio}
+            following={user.followers.length}
+            followers={user.following.length}
+            thumbnailH="100px"
+          />
         </Box>
         <Box backgroundColor={"brand.backgroundBox"} padding={"12px 20px 20px 20px"} rounded={12}>
           <Text fontSize={"20px"} fontWeight={700} lineHeight={"28px"} mb={4}>
@@ -40,7 +53,7 @@ export default function RightBar() {
           </Text>
           <Flex direction={"column"} gap={4}>
             {others.slice(0, 5).map((other) => {
-              return <OthersAccountItem id={other.id} key={other.id} image={other.profilePhoto} fullName={other.fullname} userName={other.username} isFollow="Follow" />;
+              return <OthersAccountItem id={other.id} key={other.id} image={other.profilePhoto} fullName={other.fullname} userName={other.username} isFollow={other.isFollow} />;
             })}
           </Flex>
         </Box>

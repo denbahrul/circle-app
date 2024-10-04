@@ -21,7 +21,8 @@ class UserController {
     // #swagger.tags = ['Users']
     // #swagger.summary = 'Find all users'
     try {
-      const users = await UserServices.getAllUsers();
+      const userId = (req as any).user.id;
+      const users = await UserServices.getAllUsers(userId);
       res.json(users);
     } catch (error: unknown) {
       res.status(500).json(error);
@@ -32,9 +33,11 @@ class UserController {
     // #swagger.tags = ['Users']
     // #swagger.summary = 'Find a user by params id'
     try {
-      const { id } = req.params;
-      const user = await userServices.getUserById(Number(id));
-      res.json(user);
+      const userId = req.params.id;
+      const userLoginId = (req as any).user.id;
+      const user = await userServices.getUserById(Number(userId));
+      const isFollow = await userServices.isFollow(Number(userId), userLoginId);
+      res.json({ ...user, isFollow });
     } catch (error) {
       res.status(500).json(error);
     }

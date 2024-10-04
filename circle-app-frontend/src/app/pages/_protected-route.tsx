@@ -1,12 +1,19 @@
 import { Navigate, Outlet, useNavigate } from "react-router-dom";
 import { useAppSelector } from "../../hooks/use-store";
-import { Spinner } from "@chakra-ui/react";
+import { Box, Image, Spinner } from "@chakra-ui/react";
 
 export default function ProtectedRoutes() {
   const auth = useAppSelector((state) => state.auth);
 
   if (auth.loading == "pending") {
-    return <Spinner />;
+    return (
+      <Box display="flex" justifyContent="center" alignItems="center" height="100vh">
+        <Box textAlign="center">
+          <Image mb={4} h={50} src="/logo.svg" alt="circle logo" />
+          <Spinner h={50} w={50} mt={4} />
+        </Box>
+      </Box>
+    );
   }
 
   if (auth.entities.id) {

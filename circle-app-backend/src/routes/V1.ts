@@ -18,7 +18,7 @@ routerV1.get("/user/me", authentication, authControllers.getUserLogged);
 routerV1.get("/users", authentication, UserController.findAll);
 routerV1.get("/users/:id", authentication, UserController.findOne);
 // routerV1.post("/users", UserController.create);
-routerV1.patch("/users", authentication, UserController.update);
+routerV1.patch("/users", authentication, upload.single("profilePhoto"), UserController.update);
 
 // FOLLOW
 routerV1.post("/follow", authentication, followController.follow);

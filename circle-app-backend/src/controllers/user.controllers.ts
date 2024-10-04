@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import UserServices from "../services/user.services";
 import { createUserSchema } from "../utils/schemas/user.schema";
 import userServices from "../services/user.services";
+import cloudinaryServices from "../services/cloudinary.services";
 
 class UserController {
   // async create(req: Request, res: Response) {
@@ -49,7 +50,7 @@ class UserController {
     /*  #swagger.requestBody = {
             required: true,
             content: {
-                "application/json": {
+                "multipart/form-data": {
                     schema: {
                         $ref: "#/components/schemas/profileEditSchema"
                     }  
@@ -59,8 +60,17 @@ class UserController {
     */
     try {
       const id = (req as any).user.id;
+      const fileUpload = req.file;
+      let imageUrl = null;
+
+      if (fileUpload) {
+        const image = await cloudinaryServices.upload(req.file as Express.Multer.File);
+        imageUrl = image.secure_url;
+      }
+
       const value = {
         ...req.body,
+        profilePhoto: imageUrl,
         id: id,
       };
 

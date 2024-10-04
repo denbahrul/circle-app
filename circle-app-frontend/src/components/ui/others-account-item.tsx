@@ -1,4 +1,4 @@
-import { Avatar, Box, Button, Flex, Image, Text } from "@chakra-ui/react";
+import { Avatar, Box, Button, Flex, Image, Spinner, Text } from "@chakra-ui/react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { apiV1 } from "../../libs/api";
@@ -15,6 +15,7 @@ interface Account {
 
 export default function OthersAccountItem({ id, image, fullName, userName, bio, isFollow }: Account) {
   const [isFollowUser, setIsFollowUser] = useState<boolean>(isFollow);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   async function onFollow(event: React.MouseEvent<HTMLButtonElement>, followingId: number) {
     event.preventDefault();
@@ -22,10 +23,14 @@ export default function OthersAccountItem({ id, image, fullName, userName, bio, 
     try {
       let response;
       if (isFollowUser) {
+        setIsLoading(true);
         response = await apiV1.delete(`/unfollow/${followingId}`);
+        setIsLoading(false);
         setIsFollowUser(false);
       } else {
+        setIsLoading(true);
         response = await apiV1.post("/follow", { followingId });
+        setIsLoading(false);
         setIsFollowUser(true);
       }
       Swal.fire({
@@ -67,8 +72,9 @@ export default function OthersAccountItem({ id, image, fullName, userName, bio, 
               padding={"7px 20px"}
               fontSize={"14px"}
               fontWeight={700}
+              isDisabled={isLoading}
             >
-              {isFollowUser ? "Unfollow" : "Follow"}
+              {isLoading ? <Spinner /> : isFollowUser ? "Unfollow" : "Follow"}
             </Button>
           </Flex>
           <Text noOfLines={1} fontSize={"14px"} fontWeight={400} lineHeight={"20px"}>

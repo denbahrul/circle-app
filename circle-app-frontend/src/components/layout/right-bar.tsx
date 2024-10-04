@@ -1,4 +1,4 @@
-import { Box, Flex, Image, Spinner, Text } from "@chakra-ui/react";
+import { Box, Flex, Image, Skeleton, Spinner, Stack, Text } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import { useAppSelector } from "../../hooks/use-store";
 import { apiV1 } from "../../libs/api";
@@ -9,10 +9,12 @@ import { UserEntity } from "../../entities/user";
 export default function RightBar() {
   const user = useAppSelector((state) => state.auth.entities);
   const [others, setOther] = useState<UserEntity[]>([]);
+  const [isLoading, setIsLoading] = useState<Boolean>(true);
 
   async function getThreads() {
     const response = await apiV1.get("/users");
     const data = response.data;
+    setIsLoading(false);
     return { data: data };
   }
 
@@ -51,11 +53,19 @@ export default function RightBar() {
           <Text fontSize={"20px"} fontWeight={700} lineHeight={"28px"} mb={4}>
             Suggested for you
           </Text>
-          <Flex direction={"column"} gap={4}>
-            {others.slice(0, 5).map((other) => {
-              return <OthersAccountItem id={other.id} key={other.id} image={other.profilePhoto} fullName={other.fullname} userName={other.username} isFollow={other.isFollow} />;
-            })}
-          </Flex>
+          {isLoading ? (
+            <Stack>
+              <Skeleton height="40px" />
+              <Skeleton height="40px" />
+              <Skeleton height="40px" />
+            </Stack>
+          ) : (
+            <Flex direction={"column"} gap={4}>
+              {others.slice(0, 5).map((other) => {
+                return <OthersAccountItem id={other.id} key={other.id} image={other.profilePhoto} fullName={other.fullname} userName={other.username} isFollow={other.isFollow} />;
+              })}
+            </Flex>
+          )}
         </Box>
         <Box backgroundColor={"brand.backgroundBox"} padding={"12px 20px 20px 20px"} rounded={12}>
           <Flex gap={1}>

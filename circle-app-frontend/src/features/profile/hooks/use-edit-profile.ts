@@ -12,6 +12,7 @@ export default function useEditProfile() {
   const {
     register,
     handleSubmit,
+    watch,
     formState: { errors, isSubmitting },
   } = useForm<EditProfileFormInput>({
     resolver: zodResolver(editProfileSchema),
@@ -24,7 +25,13 @@ export default function useEditProfile() {
 
   async function onSubmit(data: EditProfileFormInput) {
     try {
-      const response = await apiV1.patch<null, { data: EditProfileResponseDTO }, EditProfileRequestDTO>("/users", data);
+      const formData = new FormData();
+      formData.append("fullname", data.fullname);
+      formData.append("username", data.username);
+      formData.append("bio", data.bio);
+      formData.append("profilePhoto", data.profilePhoto[0]);
+
+      const response = await apiV1.patch<null, { data: EditProfileResponseDTO }>("/users", formData);
       Swal.fire({
         icon: "success",
         title: response.data.message,
@@ -60,6 +67,7 @@ export default function useEditProfile() {
   return {
     register,
     handleSubmit,
+    watch,
     errors,
     isSubmitting,
     onSubmit,

@@ -6,6 +6,7 @@ import { useState } from "react";
 export function PostAction({ like, reply, id, isLike }: { like: number; reply: number; id: number; isLike: boolean }) {
   const [isThreadLike, setIsThreadLike] = useState<boolean>(isLike);
   const [likeCount, setLikeCount] = useState<number>(like);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   async function onLike(event: React.MouseEvent<HTMLDivElement>, threadId: number) {
     event.preventDefault();
@@ -13,13 +14,17 @@ export function PostAction({ like, reply, id, isLike }: { like: number; reply: n
     try {
       let response;
       if (isThreadLike) {
+        setIsLoading(true);
         setIsThreadLike(false);
         setLikeCount(likeCount - 1);
         response = await apiV1.delete(`/threads/like/${threadId}`);
+        setIsLoading(false);
       } else {
+        setIsLoading(true);
         setIsThreadLike(true);
         setLikeCount(likeCount + 1);
         response = await apiV1.post("/threads/like", { threadId });
+        setIsLoading(false);
       }
       // Swal.fire({
       //   icon: "success",

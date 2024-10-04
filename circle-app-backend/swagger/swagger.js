@@ -60,6 +60,7 @@ const doc = {
           },
           profilePhoto: {
             type: "string",
+            format: "binary",
           },
         },
       },

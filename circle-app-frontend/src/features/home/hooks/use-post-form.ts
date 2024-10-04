@@ -21,7 +21,6 @@ export function usePostThread() {
       const formData = new FormData();
       formData.append("content", data.content);
       formData.append("image", data.image[0]);
-      console.log("imageeee", data.image);
 
       const response = await apiV1.post<null, { data: ThreadPostResponseDTO }>("/threads", formData);
       // alert(response.data.message);

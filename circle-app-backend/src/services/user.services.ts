@@ -101,7 +101,7 @@ class UserServices {
     }
 
     await prisma.user.update({
-      data: user,
+      data: data,
       where: { id: data.id },
     });
 

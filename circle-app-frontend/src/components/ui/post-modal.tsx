@@ -2,11 +2,20 @@ import { Avatar, Box, Button, FormControl, Image, Input, ModalCloseButton, Modal
 import { HiOutlineXCircle } from "react-icons/hi";
 import { usePostThread } from "../../features/home/hooks/use-post-form";
 import { useAppSelector } from "../../hooks/use-store";
+import { useState } from "react";
 
 export default function CreatePostModal() {
   const { register, handleSubmit, errors, isSubmitting, onSubmit, watch } = usePostThread();
   const user = useAppSelector((state) => state.auth.entities);
+  const [image, setImage] = useState<string | null>(null);
   const content = watch("content");
+
+  const onImageChage = (event: React.ChangeEvent<HTMLInputElement>, onChange: (...event: any[]) => void) => {
+    if (event.target.files && event.target.files[0]) {
+      setImage(URL.createObjectURL(event.target.files[0]));
+      onChange(event);
+    }
+  };
 
   return (
     <ModalContent maxW={"740px"} backgroundColor={"brand.backgroundCircle"} rounded={15}>
@@ -18,8 +27,12 @@ export default function CreatePostModal() {
           <FormControl display={"flex"} alignItems={"flex-start"} gap={4} justifyContent={"space-between"}>
             <Avatar src={user.profilePhoto} name={user.fullname} borderColor={"brand.backgroundBox"} height={"40px"} width={"40px"} rounded={"full"} objectFit="cover" />
             <Box flex={"1"}>
-              <Textarea {...register("content")} variant={"unstyled"} border={"none"} placeholder="What is happening?!" />
-              <Input {...register("image")} type="file" variant={"unstyled"} border={"none"} />
+              {image ? (
+                <Input {...register("content")} variant={"unstyled"} border={"none"} height={"40px"} placeholder="What is happening?!" />
+              ) : (
+                <Textarea {...register("content")} variant={"unstyled"} border={"none"} height={"40px"} placeholder="What is happening?!" />
+              )}
+              {image && <Image src={image} rounded={8} mt={4} />}
             </Box>
           </FormControl>
           {errors.content && (
@@ -27,9 +40,12 @@ export default function CreatePostModal() {
               * {errors.content.message}
             </Text>
           )}
+          <Input {...register("image")} onChange={(e) => onImageChage(e, register("image").onChange)} id="fileUpload" type="file" variant={"unstyled"} border={"none"} hidden />
         </Box>
         <Box p={4} display={"flex"} alignItems={"center"} justifyContent={"space-between"} gap={4} px={6} borderTop={"solid 1px"} borderColor={"brand.borderAbu"}>
-          <Image src="/gallery-add.svg" alt="gallery" height={"24px"} />
+          <label htmlFor="fileUpload">
+            <Image src="/gallery-add.svg" alt="gallery" height={"24px"} />
+          </label>
           <Button
             type="submit"
             backgroundColor={content ? "brand.green" : "brand.green-dark"}

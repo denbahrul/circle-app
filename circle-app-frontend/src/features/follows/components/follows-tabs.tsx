@@ -35,12 +35,32 @@ export default function FollowsTabs() {
       <TabPanels>
         <TabPanel display={"flex"} flexDirection={"column"} gap={4}>
           {followers.map((follower) => {
-            return <OthersAccountItem id={follower.followers.id} key={follower.id} image={follower.followers.profilePhoto} fullName={follower.followers.fullname} userName={follower.followers.username} isFollow="Follow" />;
+            return (
+              <OthersAccountItem
+                id={follower.followers.id}
+                key={follower.id}
+                image={follower.followers.profilePhoto}
+                fullName={follower.followers.fullname}
+                userName={follower.followers.username}
+                bio={follower.followers.bio}
+                isFollow={follower.isFollow}
+              />
+            );
           })}
         </TabPanel>
         <TabPanel display={"flex"} flexDirection={"column"} gap={4}>
           {following.map((following) => {
-            return <OthersAccountItem id={following.following.id} key={following.id} image={following.following.profilePhoto} fullName={following.following.fullname} userName={following.following.username} isFollow="Follow" />;
+            return (
+              <OthersAccountItem
+                id={following.following.id}
+                key={following.id}
+                image={following.following.profilePhoto}
+                fullName={following.following.fullname}
+                userName={following.following.username}
+                bio={following.following.bio}
+                isFollow={following.isFollow}
+              />
+            );
           })}
         </TabPanel>
       </TabPanels>

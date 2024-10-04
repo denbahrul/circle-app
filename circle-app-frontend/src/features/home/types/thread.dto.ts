@@ -1,6 +1,7 @@
 import { ThreadEntity } from "../../../entities/thread";
 
 export type Thread = {
+  id: number;
   profilePhoto?: string;
   fullName: string;
   userName?: string;

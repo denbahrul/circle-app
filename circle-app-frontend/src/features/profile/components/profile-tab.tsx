@@ -3,8 +3,9 @@ import { TabIndicatorCircle, TabItem } from "../../../components/ui/circle-tab";
 import PostList from "./post-list";
 import MediaList from "./media-list";
 import { Thread } from "../../home/types/thread.dto";
+import { ThreadEntity } from "../../../entities/thread";
 
-export default function ProfileTabs({ threads }) {
+export default function ProfileTabs({ threads }: { threads: ThreadEntity[] }) {
   return (
     <Tabs isFitted variant={"unstyled"}>
       <TabList borderBottom="1px solid" borderColor="brand.borderAbu">

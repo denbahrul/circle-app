@@ -38,7 +38,19 @@ export default function MyProfilePage() {
       </Link>
 
       <Box padding={4}>
-        <ProfileHeading profilePhoto={user.profilePhoto} fullname={user.fullname} username={user.username} bio={user.bio} following={user.following.length} followers={user.followers.length} thumbnailH="140px" />
+        <ProfileHeading
+          id={user.id}
+          isFollow={user.isFollow}
+          isMyProfile={true}
+          buttonTitle={"Edit Profile"}
+          profilePhoto={user.profilePhoto}
+          fullname={user.fullname}
+          username={user.username}
+          bio={user.bio}
+          followers={user.following.length}
+          following={user.followers.length}
+          thumbnailH="140px"
+        />
       </Box>
       <ProfileTabs threads={threads} />
     </Box>

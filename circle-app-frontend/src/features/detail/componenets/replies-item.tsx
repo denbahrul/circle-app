@@ -1,10 +1,10 @@
-import { RepliesAction } from "../../../components/ui/post-action";
-import PostContent from "../../../components/ui/post-content";
+import { RepliesAction } from "../../../components/ui/thread-action";
+import PostContent from "../../../components/ui/thread-content";
 import { Thread } from "../../home/types/thread.dto";
 
-export default function RepliesItem({ image, fullName, userName, postContent, postImage, like }: Omit<Thread, "reply">) {
+export default function RepliesItem({ profilePhoto, fullName, userName, postContent, postImage, like, id, authorId }: Omit<Thread, "reply"> & { authorId: number }) {
   return (
-    <PostContent image={image} fullName={fullName} userName={userName} postContent={postContent} postImage={postImage}>
+    <PostContent authorId={authorId} id={id} profilePhoto={profilePhoto} fullName={fullName} userName={userName} postContent={postContent} postImage={postImage}>
       <RepliesAction like={like} />
     </PostContent>
   );

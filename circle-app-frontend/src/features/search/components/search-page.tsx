@@ -2,13 +2,13 @@ import { Flex, Image, Input, Spinner } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import OthersAccountItem from "../../../components/ui/others-account-item";
+import { UserEntity } from "../../../entities/user";
 import SearchNoResults from "../../../features/search/components/search-no-result";
 import StartSearch from "../../../features/search/components/search-start";
 import { apiV1 } from "../../../libs/api";
-import { UserProfileDTO } from "../../profile/types/profile.dto";
 
 export default function SearchPage() {
-  const [others, setOther] = useState<UserProfileDTO[]>([]);
+  const [others, setOther] = useState<UserEntity[]>([]);
   const {
     register,
     watch,
@@ -45,14 +45,14 @@ export default function SearchPage() {
           return (
             <Flex mt={4} direction={"column"} gap={4}>
               {otherSearch.map((other) => {
-                return <OthersAccountItem id={other.id} key={other.id} image={other.profilePhoto} fullName={other.fullname} userName={other.username} bio={other.bio} isFollow="Follow" />;
+                return <OthersAccountItem id={other.id} key={other.id} image={other.profilePhoto} fullName={other.fullname} userName={other.username} bio={other.bio} isFollow={other.isFollow} />;
               })}
             </Flex>
           );
-        } else if (otherSearch.length == 0 && keyword !== "") {
-          return <SearchNoResults keyword={keyword} />;
-        } else {
+        } else if (!keyword) {
           return <StartSearch />;
+        } else {
+          return <SearchNoResults keyword={keyword} />;
         }
       })()}
     </Flex>

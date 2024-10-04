@@ -60,6 +60,7 @@ const doc = {
           },
           profilePhoto: {
             type: "string",
+            format: "binary",
           },
         },
       },
@@ -97,7 +98,7 @@ const doc = {
       followSchema: {
         type: "object",
         properties: {
-          followersId: {
+          followingId: {
             type: "integer",
           },
         },

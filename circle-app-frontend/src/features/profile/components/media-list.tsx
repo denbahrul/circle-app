@@ -4,9 +4,9 @@ import { useAppSelector } from "../../../hooks/use-store";
 import { ThreadEntity } from "../../../entities/thread";
 import { useEffect, useState } from "react";
 import { apiV1 } from "../../../libs/api";
-import { ThreadResponseDTO } from "../../home/types/thread.dto";
+import { Thread, ThreadResponseDTO } from "../../home/types/thread.dto";
 
-export default function MediaList({ threads }) {
+export default function MediaList({ threads }: { threads: ThreadEntity[] }) {
   // const [medias, setMedia] = useState<ThreadEntity[]>([]);
   // const user = useAppSelector((state) => state.auth.entities);
 
@@ -27,7 +27,7 @@ export default function MediaList({ threads }) {
       {threads.map((thread) => {
         if (thread.image !== null) {
           return (
-            <Link key={threads.id} to={"/detail-image/"}>
+            <Link key={thread.id} to={`/detail-image/${thread.id}`}>
               <AspectRatio width={"100%"} ratio={1}>
                 <Image src={thread.image} rounded={4} objectFit="cover" />
               </AspectRatio>

@@ -16,7 +16,9 @@ interface Account {
 export default function OthersAccountItem({ id, image, fullName, userName, bio, isFollow }: Account) {
   const [isFollowUser, setIsFollowUser] = useState<boolean>(isFollow);
 
-  async function onFollow(followingId: number) {
+  async function onFollow(event: React.MouseEvent<HTMLButtonElement>, followingId: number) {
+    event.preventDefault();
+
     try {
       let response;
       if (isFollowUser) {
@@ -54,7 +56,18 @@ export default function OthersAccountItem({ id, image, fullName, userName, bio, 
                 @{userName}
               </Text>
             </Box>
-            <Button onClick={() => onFollow(id)} backgroundColor={"transparent"} height={"33px"} border={"solid 1px"} borderColor={"white"} color={"white"} rounded={"full"} padding={"7px 20px"} fontSize={"14px"} fontWeight={700}>
+            <Button
+              onClick={(event) => onFollow(event, id)}
+              backgroundColor={"transparent"}
+              height={"33px"}
+              border={"solid 1px"}
+              borderColor={"white"}
+              color={"white"}
+              rounded={"full"}
+              padding={"7px 20px"}
+              fontSize={"14px"}
+              fontWeight={700}
+            >
               {isFollowUser ? "Unfollow" : "Follow"}
             </Button>
           </Flex>

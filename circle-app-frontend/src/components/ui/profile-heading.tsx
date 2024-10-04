@@ -97,7 +97,7 @@ export default function ProfileHeading({
       </Flex>
       <Modal closeOnOverlayClick={false} isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
-        <EditProfileModal thumbnailH={thumbnailH} />
+        <EditProfileModal profilePhoto={profilePhoto} thumbnailH={thumbnailH} fullname={fullname} />
       </Modal>
     </>
   );

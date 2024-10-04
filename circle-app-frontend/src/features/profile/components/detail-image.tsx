@@ -3,8 +3,6 @@ import { useNavigate, useParams } from "react-router-dom";
 import { HiXCircle } from "react-icons/hi";
 import { HiChevronRight, HiChevronLeft } from "react-icons/hi";
 import PostDetail from "../../detail/componenets/thread-detail";
-import FormPost from "../../../components/ui/post-form";
-import RepliesList from "../../../features/detail/componenets/replies-list";
 import { useEffect, useState } from "react";
 import { apiV1 } from "../../../libs/api";
 import { ThreadEntity } from "../../../entities/thread";

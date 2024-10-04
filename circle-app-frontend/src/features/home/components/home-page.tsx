@@ -1,4 +1,4 @@
-import { Box, Button, Text } from "@chakra-ui/react";
+import { Box, Button, Flex, Skeleton, SkeletonCircle, SkeletonText, Stack, Text } from "@chakra-ui/react";
 import PostItem from "../../../components/ui/thread-item";
 import CreatePost from "./create-post";
 import axios from "axios";
@@ -9,17 +9,22 @@ import { ThreadResponseDTO } from "../types/thread.dto";
 
 export default function HomePage() {
   const [threads, setThread] = useState<ThreadEntity[]>([]);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
 
   async function getThreads() {
-    const response = await apiV1.get<null, { data: ThreadResponseDTO }>("/threads");
-    const data = response.data.data;
-    return { data: data };
+    try {
+      const response = await apiV1.get<null, { data: ThreadResponseDTO }>("/threads");
+      const data = response.data.data;
+      setThread(data);
+    } catch (errors) {
+      console.error(errors);
+    } finally {
+      setIsLoading(false);
+    }
   }
 
   useEffect(() => {
-    getThreads().then(({ data }) => {
-      setThread(data);
-    });
+    getThreads();
   }, []);
 
   return (
@@ -28,8 +33,14 @@ export default function HomePage() {
         Home
       </Text>
       <CreatePost />
-      {threads.map((threads) => {
-        return (
+
+      {isLoading ? (
+        <Box padding="6">
+          <SkeletonCircle size="10" />
+          <SkeletonText mt="4" noOfLines={4} spacing="4" skeletonHeight="3" />
+        </Box>
+      ) : (
+        threads.map((threads) => (
           <PostItem
             authorId={threads.authorId}
             id={threads.id}
@@ -43,8 +54,8 @@ export default function HomePage() {
             like={threads.like.length}
             reply={threads.replies.length}
           />
-        );
-      })}
+        ))
+      )}
     </Box>
   );
 }

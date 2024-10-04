@@ -49,10 +49,10 @@ export default function SearchPage() {
               })}
             </Flex>
           );
-        } else if (otherSearch.length == 0 && keyword !== "") {
-          return <SearchNoResults keyword={keyword} />;
-        } else {
+        } else if (!keyword) {
           return <StartSearch />;
+        } else {
+          return <SearchNoResults keyword={keyword} />;
         }
       })()}
     </Flex>

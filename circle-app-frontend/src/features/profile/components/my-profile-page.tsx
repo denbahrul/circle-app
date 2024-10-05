@@ -1,15 +1,14 @@
-import { Box, Text, Flex } from "@chakra-ui/react";
-import AppLayout from "../../../components/layout/app-layout";
-import ProfileHeading from "../../../components/ui/profile-heading";
-import ProfileTabs from "../../../features/profile/components/profile-tab";
+import { Box, Flex, Text } from "@chakra-ui/react";
 import { HiOutlineArrowLeft } from "react-icons/hi";
 import { Link } from "react-router-dom";
+import ProfileHeading from "../../../components/ui/profile-heading";
+import ProfileTabs from "../../../features/profile/components/profile-tab";
 import { useAppSelector } from "../../../hooks/use-store";
 
 import { useEffect, useState } from "react";
 import { ThreadEntity } from "../../../entities/thread";
-import { apiV1 } from "../../../libs/api";
 import { ThreadResponseDTO } from "../../../features/home/types/thread.dto";
+import { apiV1 } from "../../../libs/api";
 
 export default function MyProfilePage() {
   const user = useAppSelector((state) => state.auth.entities);

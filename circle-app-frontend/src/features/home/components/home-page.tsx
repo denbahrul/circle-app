@@ -1,11 +1,10 @@
-import { Box, Button, Flex, Skeleton, SkeletonCircle, SkeletonText, Stack, Text } from "@chakra-ui/react";
-import PostItem from "../../../components/ui/thread-item";
-import CreatePost from "./create-post";
-import axios from "axios";
-import { ThreadEntity } from "../../../entities/thread";
+import { Box, SkeletonCircle, SkeletonText, Text } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
+import PostItem from "../../../components/ui/thread-item";
+import { ThreadEntity } from "../../../entities/thread";
 import { apiV1 } from "../../../libs/api";
 import { ThreadResponseDTO } from "../types/thread.dto";
+import CreatePost from "./create-post";
 
 export default function HomePage() {
   const [threads, setThread] = useState<ThreadEntity[]>([]);

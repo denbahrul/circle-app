@@ -2,10 +2,10 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import axios from "axios";
 import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
+import { useAppSelector } from "../../../hooks/use-store";
 import { apiV1 } from "../../../libs/api";
 import { EditProfileFormInput, editProfileSchema } from "../schema/edit";
-import { EditProfileRequestDTO, EditProfileResponseDTO } from "../types/profile.dto";
-import { useAppSelector } from "../../../hooks/use-store";
+import { EditProfileResponseDTO } from "../types/profile.dto";
 
 export default function useEditProfile() {
   const user = useAppSelector((state) => state.auth.entities);

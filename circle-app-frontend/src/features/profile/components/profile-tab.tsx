@@ -1,9 +1,8 @@
-import { Tabs, TabList, TabPanels, TabPanel } from "@chakra-ui/react";
+import { TabList, TabPanel, TabPanels, Tabs } from "@chakra-ui/react";
 import { TabIndicatorCircle, TabItem } from "../../../components/ui/circle-tab";
-import PostList from "./post-list";
-import MediaList from "./media-list";
-import { Thread } from "../../home/types/thread.dto";
 import { ThreadEntity } from "../../../entities/thread";
+import MediaList from "./media-list";
+import PostList from "./post-list";
 
 export default function ProfileTabs({ threads }: { threads: ThreadEntity[] }) {
   return (

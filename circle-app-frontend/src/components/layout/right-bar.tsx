@@ -1,10 +1,10 @@
 import { Box, Flex, Image, Skeleton, Spinner, Stack, Text } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
+import { UserEntity } from "../../entities/user";
 import { useAppSelector } from "../../hooks/use-store";
 import { apiV1 } from "../../libs/api";
 import OthersAccountItem from "../ui/others-account-item";
 import ProfileHeading from "../ui/profile-heading";
-import { UserEntity } from "../../entities/user";
 
 export default function RightBar() {
   const user = useAppSelector((state) => state.auth.entities);
@@ -100,7 +100,6 @@ export default function RightBar() {
 }
 
 export function RightBarProfile() {
-  const user = useAppSelector((state) => state.auth.entities);
   const [others, setOther] = useState<UserEntity[]>([]);
 
   async function getThreads() {

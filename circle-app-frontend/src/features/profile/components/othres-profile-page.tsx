@@ -1,16 +1,12 @@
-import { Box, Text, Flex, Spinner } from "@chakra-ui/react";
-import AppLayout from "../../../components/layout/app-layout";
-import ProfileHeading from "../../../components/ui/profile-heading";
-import ProfileTabs from "../../../features/profile/components/profile-tab";
+import { Box, Flex, Spinner, Text } from "@chakra-ui/react";
 import { HiOutlineArrowLeft } from "react-icons/hi";
 import { Link, useParams } from "react-router-dom";
-import { useAppSelector } from "../../../hooks/use-store";
+import ProfileHeading from "../../../components/ui/profile-heading";
+import ProfileTabs from "../../../features/profile/components/profile-tab";
 
 import { useEffect, useState } from "react";
-import { ThreadEntity } from "../../../entities/thread";
-import { apiV1 } from "../../../libs/api";
-import { ThreadResponseDTO } from "../../../features/home/types/thread.dto";
 import { UserEntity } from "../../../entities/user";
+import { apiV1 } from "../../../libs/api";
 
 export default function ProfilePage() {
   const [user, setUser] = useState<UserEntity>();

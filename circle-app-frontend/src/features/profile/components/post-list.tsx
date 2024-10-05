@@ -1,9 +1,5 @@
 import { Box } from "@chakra-ui/react";
 import PostItem from "../../../components/ui/thread-item";
-import { apiV1 } from "../../../libs/api";
-import { useAppSelector } from "../../../hooks/use-store";
-import { Thread, ThreadResponseDTO } from "../../home/types/thread.dto";
-import { useEffect, useState } from "react";
 import { ThreadEntity } from "../../../entities/thread";
 
 export default function PostList({ threads }: { threads: ThreadEntity[] }) {

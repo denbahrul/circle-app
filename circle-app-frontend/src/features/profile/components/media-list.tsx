@@ -1,10 +1,6 @@
-import { Grid, Image, AspectRatio } from "@chakra-ui/react";
+import { AspectRatio, Grid, Image } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
-import { useAppSelector } from "../../../hooks/use-store";
 import { ThreadEntity } from "../../../entities/thread";
-import { useEffect, useState } from "react";
-import { apiV1 } from "../../../libs/api";
-import { Thread, ThreadResponseDTO } from "../../home/types/thread.dto";
 
 export default function MediaList({ threads }: { threads: ThreadEntity[] }) {
   // const [medias, setMedia] = useState<ThreadEntity[]>([]);

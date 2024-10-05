@@ -1,8 +1,8 @@
-import { Avatar, Box, Button, Flex, Image, Spinner, Text } from "@chakra-ui/react";
+import { Avatar, Box, Button, Flex, Spinner, Text } from "@chakra-ui/react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { apiV1 } from "../../libs/api";
 import Swal from "sweetalert2";
+import { apiV1 } from "../../libs/api";
 
 interface Account {
   id: number;

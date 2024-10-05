@@ -1,30 +1,24 @@
 import { Flex, Image, Text } from "@chakra-ui/react";
-import { apiV1 } from "../../libs/api";
-import Swal from "sweetalert2";
 import { useState } from "react";
+import { apiV1 } from "../../libs/api";
 
 export function PostAction({ like, reply, id, isLike }: { like: number; reply: number; id: number; isLike: boolean }) {
   const [isThreadLike, setIsThreadLike] = useState<boolean>(isLike);
   const [likeCount, setLikeCount] = useState<number>(like);
-  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   async function onLike(event: React.MouseEvent<HTMLDivElement>, threadId: number) {
     event.preventDefault();
 
     try {
-      let response;
+      // let response;
       if (isThreadLike) {
-        setIsLoading(true);
         setIsThreadLike(false);
         setLikeCount(likeCount - 1);
-        response = await apiV1.delete(`/threads/like/${threadId}`);
-        setIsLoading(false);
+        await apiV1.delete(`/threads/like/${threadId}`);
       } else {
-        setIsLoading(true);
         setIsThreadLike(true);
         setLikeCount(likeCount + 1);
-        response = await apiV1.post("/threads/like", { threadId });
-        setIsLoading(false);
+        await apiV1.post("/threads/like", { threadId });
       }
       // Swal.fire({
       //   icon: "success",
@@ -36,7 +30,7 @@ export function PostAction({ like, reply, id, isLike }: { like: number; reply: n
       //   timer: 800,
       // });
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   }
 

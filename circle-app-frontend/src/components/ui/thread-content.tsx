@@ -1,7 +1,6 @@
 import { Avatar, Flex, Image, Text } from "@chakra-ui/react";
-import { Link, Navigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Thread } from "../../features/home/types/thread.dto";
-import { useNavigate } from "react-router-dom";
 
 export default function PostContent({ profilePhoto, fullName, userName, postContent, postImage, children, authorId, id }: Omit<Thread, "like" | "reply"> & { children: React.ReactNode; authorId: number }) {
   const navigate = useNavigate();

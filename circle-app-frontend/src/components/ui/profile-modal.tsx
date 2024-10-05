@@ -1,9 +1,7 @@
-import { Avatar, Box, Button, Flex, Image, Input, Spinner, Text, Textarea } from "@chakra-ui/react";
-import { ModalContent, ModalHeader, ModalFooter, ModalBody, ModalCloseButton } from "@chakra-ui/react";
+import { Avatar, Box, Button, Flex, Image, Input, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, Spinner, Text, Textarea } from "@chakra-ui/react";
+import { useState } from "react";
 import { HiOutlineXCircle } from "react-icons/hi";
 import useEditProfile from "../../features/profile/hooks/use-edit-profile";
-import { useAppSelector } from "../../hooks/use-store";
-import { useState } from "react";
 
 export default function EditProfileModal({ thumbnailH, fullname, profilePhoto }: { thumbnailH: string; fullname: string; profilePhoto?: string }) {
   const { register, handleSubmit, errors, isSubmitting, onSubmit } = useEditProfile();

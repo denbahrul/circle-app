@@ -14,7 +14,6 @@ export default function ProfileHeading({
   profilePhoto,
   following,
   followers,
-  buttonTitle,
   isFollow,
   isMyProfile,
 }: UserProfileDTO & { thumbnailH: string; buttonTitle: string; isFollow: boolean; isMyProfile?: boolean }) {

@@ -1,6 +1,6 @@
-import { Navigate, Outlet, useNavigate } from "react-router-dom";
-import { useAppSelector } from "../../hooks/use-store";
 import { Box, Image, Spinner } from "@chakra-ui/react";
+import { Navigate, Outlet } from "react-router-dom";
+import { useAppSelector } from "../../hooks/use-store";
 
 export default function ProtectedRoutes() {
   const auth = useAppSelector((state) => state.auth);

@@ -1,7 +1,7 @@
-import { Box, Button, Flex, Image, Input, FormControl, Spinner, Text, Avatar, FormLabel } from "@chakra-ui/react";
+import { Avatar, Box, Button, Flex, FormControl, Image, Input, Spinner, Text } from "@chakra-ui/react";
+import { useState } from "react";
 import { usePostThread } from "../../features/home/hooks/use-post-form";
 import { useAppSelector } from "../../hooks/use-store";
-import { useState } from "react";
 
 export default function FormPost({ placeholder, buttonTitle }: { placeholder: string; buttonTitle: string }) {
   const { register, handleSubmit, errors, isSubmitting, onSubmit, watch } = usePostThread();

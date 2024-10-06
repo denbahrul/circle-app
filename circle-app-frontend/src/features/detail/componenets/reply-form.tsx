@@ -1,10 +1,21 @@
 import { Box, Button, Flex, Image, Input, FormControl, Spinner, Text, Avatar } from "@chakra-ui/react";
-import { usePostReply } from "../hooks/use-post-reply";
+
 import { useAppSelector } from "../../../hooks/use-store";
+import { useState } from "react";
+import { usePostReply } from "../../home/hooks/use-post-reply";
 
 export default function FormReply({ placeholder, buttonTitle, threadId }: { placeholder: string; buttonTitle: string; threadId: number }) {
-  const { register, handleSubmit, errors, isSubmitting, onSubmit } = usePostReply({ threadId });
+  const { register, handleSubmit, watch, errors, isSubmitting, onSubmit } = usePostReply({ threadId });
   const user = useAppSelector((state) => state.auth.entities);
+  const [image, setImage] = useState<string | null>(null);
+  const content = watch("content");
+
+  const onImageChage = (event: React.ChangeEvent<HTMLInputElement>, onChange: (...event: any[]) => void) => {
+    if (event.target.files && event.target.files[0]) {
+      setImage(URL.createObjectURL(event.target.files[0]));
+      onChange(event);
+    }
+  };
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
@@ -17,13 +28,17 @@ export default function FormReply({ placeholder, buttonTitle, threadId }: { plac
               * {errors.content.message}
             </Text>
           )}
+          <Input {...register("image")} onChange={(e) => onImageChage(e, register("image").onChange)} id="upload" type="file" variant={"unstyled"} border={"none"} hidden />
+          {image && <Image src={image} rounded={8} mt={4} />}
         </Box>
         <Flex alignItems={"center"} gap={4}>
-          <Image src="/gallery-add.svg" alt="gallery" height={"24px"} />
+          <label htmlFor="upload">
+            <Image src="/gallery-add.svg" alt="gallery" height={"24px"} />
+          </label>
           <Button
             type="submit"
-            backgroundColor={"brand.green-dark"}
-            color={"brand.white-dark"}
+            backgroundColor={content ? "brand.green" : "brand.green-dark"}
+            color={content ? "white" : "brand.white-dark"}
             height={"33px"}
             justifyItems={"center"}
             rounded={"full"}
@@ -32,6 +47,7 @@ export default function FormReply({ placeholder, buttonTitle, threadId }: { plac
             fontSize={"14px"}
             fontWeight={700}
             lineHeight={"17px"}
+            isDisabled={isSubmitting}
           >
             {isSubmitting ? <Spinner /> : `${buttonTitle}`}
           </Button>

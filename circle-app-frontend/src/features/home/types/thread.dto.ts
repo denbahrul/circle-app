@@ -20,3 +20,5 @@ export type ThreadResponseDTO = {
 export type ThreadPostResponseDTO = Omit<ThreadResponseDTO, "data">;
 
 export type ThreadPostRequestDTO = Pick<ThreadEntity, "content" | "image">;
+
+export type ReplyPostResponseDTO = ThreadPostResponseDTO;

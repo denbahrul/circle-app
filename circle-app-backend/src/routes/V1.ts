@@ -33,7 +33,7 @@ routerV1.post("/threads", authentication, upload.single("image"), ThreadControll
 routerV1.delete("/threads/:id", authentication, ThreadController.delete);
 
 // THREAD REACTION
-routerV1.post("/threads/:id/reply", authentication, reactionController.reply);
+routerV1.post("/threads/:id/reply", authentication, upload.single("image"), reactionController.reply);
 routerV1.delete("/threads/reply/:id", authentication, reactionController.deleteReply);
 routerV1.post("/threads/like", authentication, reactionController.like);
 routerV1.post("/threads/islike", authentication, reactionController.isLike);

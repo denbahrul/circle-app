@@ -560,7 +560,7 @@
         "requestBody": {
           "required": true,
           "content": {
-            "application/json": {
+            "multipart/form-data": {
               "schema": {
                 "$ref": "#/components/schemas/createReplySchema"
               }
@@ -701,10 +701,6 @@
     },
     "/api/v1/threads/like/{id}": {
       "delete": {
-        "tags": [
-          "Reaction"
-        ],
-        "summary": "Unlike a thread",
         "description": "",
         "parameters": [
           {
@@ -724,14 +720,8 @@
           }
         ],
         "responses": {
-          "200": {
-            "description": "OK"
-          },
           "401": {
             "description": "Unauthorized"
-          },
-          "500": {
-            "description": "Internal Server Error"
           }
         },
         "security": [
@@ -816,7 +806,8 @@
             "type": "string"
           },
           "image": {
-            "type": "string"
+            "type": "string",
+            "format": "binary"
           }
         }
       },

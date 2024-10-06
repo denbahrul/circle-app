@@ -6,8 +6,13 @@ import { SuccessResponse } from "../types/success-respons";
 const prisma = new PrismaClient();
 
 class ReactionServices {
-  async createReply(data: CreateReplyDTO): Promise<Reply | null> {
-    return await prisma.reply.create({ data });
+  async createReply(data: CreateReplyDTO): Promise<SuccessResponse<Reply | null>> {
+    const result = await prisma.reply.create({ data });
+    return {
+      status: "success",
+      message: "Reply Created",
+      data: result,
+    };
   }
 
   async deleteReply(id: number): Promise<Reply | null> {
@@ -37,14 +42,10 @@ class ReactionServices {
     });
 
     if (like) {
-      return {
-        isLike: true,
-      };
+      return true;
     }
 
-    return {
-      isLike: false,
-    };
+    return false;
   }
 
   async like(data: LikeDTO): Promise<SuccessResponse<Like | null>> {
@@ -69,11 +70,11 @@ class ReactionServices {
     };
   }
 
-  async unlike(id: number, userId: number): Promise<SuccessResponse<Like | null>> {
+  async unlike(data: LikeDTO): Promise<SuccessResponse<Like | null>> {
     const likeRecord = await prisma.like.findFirst({
       where: {
-        authorId: userId,
-        threadId: id,
+        threadId: data.threadId,
+        authorId: data.authorId,
       },
     });
 

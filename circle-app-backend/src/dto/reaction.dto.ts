@@ -1,7 +1,7 @@
 export type CreateReplyDTO = {
   threadId: number;
   content: string;
-  image?: string;
+  image?: string | null;
   authorId: number;
 };
 

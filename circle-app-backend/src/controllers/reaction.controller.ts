@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import { CreateReplySchema } from "../utils/schemas/reaction.schema";
 import reactionSevices from "../services/reaction.sevices";
+import cloudinaryServices from "../services/cloudinary.services";
 
 class ReactionController {
   async reply(req: Request, res: Response) {
@@ -9,7 +10,7 @@ class ReactionController {
     /*  #swagger.requestBody = {
                 required: true,
                 content: {
-                    "application/json": {
+                    "multipart/form-data": {
                         schema: {
                             $ref: "#/components/schemas/createReplySchema"
                         }  
@@ -21,17 +22,24 @@ class ReactionController {
       const authorId = (req as any).user.id;
       const { id } = req.params;
       const threadId = Number(id);
-      const { content, image } = req.body;
+      const { content } = req.body;
+      const fileUpload = req.file;
+
+      let imageUrl = null;
+
+      if (fileUpload) {
+        const image = await cloudinaryServices.upload(fileUpload as Express.Multer.File);
+        imageUrl = image.secure_url;
+      }
+
       const reply = await reactionSevices.createReply({
         threadId,
         content,
-        image,
+        image: imageUrl,
         authorId,
       });
-      res.json({
-        status: "success",
-        message: "Reply Created",
-      });
+
+      res.json(reply);
     } catch (error) {
       res.status(500).json(error);
     }
@@ -96,11 +104,18 @@ class ReactionController {
     try {
       const authorId = (req as any).user.id;
       const { threadId } = req.body;
-      const like = await reactionSevices.like({
-        threadId,
-        authorId,
-      });
-      res.json(like);
+      const isLike = await reactionSevices.isLike({ threadId, authorId });
+      if (!isLike) {
+        const like = await reactionSevices.like({
+          threadId,
+          authorId,
+        });
+        res.json(like);
+      } else {
+        const like = await reactionSevices.unlike({ threadId, authorId });
+
+        res.json(like);
+      }
     } catch (error) {
       res.status(500).json(error);
     }
@@ -110,9 +125,9 @@ class ReactionController {
     // #swagger.tags = ['Reaction']
     // #swagger.summary = 'Unlike a thread'
     try {
-      const userId = (req as any).user.id;
-      const { id } = req.params;
-      const unLike = await reactionSevices.unlike(Number(id), userId);
+      const authorId = (req as any).user.id;
+      const threadId = Number(req.params.id);
+      const unLike = await reactionSevices.unlike({ threadId, authorId });
       res.json(unLike);
     } catch (error) {
       res.status(500).json(error);

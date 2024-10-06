@@ -655,6 +655,50 @@
         }
       }
     },
+    "/api/v1/replies/like": {
+      "post": {
+        "tags": [
+          "Reaction"
+        ],
+        "summary": "Like a thread reply",
+        "description": "",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/likeRepliesSchema"
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/v1/threads/islike": {
       "post": {
         "tags": [
@@ -815,6 +859,14 @@
         "type": "object",
         "properties": {
           "threadId": {
+            "type": "integer"
+          }
+        }
+      },
+      "likeRepliesSchema": {
+        "type": "object",
+        "properties": {
+          "repliesId": {
             "type": "integer"
           }
         }

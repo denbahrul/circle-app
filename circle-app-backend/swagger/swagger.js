@@ -96,6 +96,14 @@ const doc = {
           },
         },
       },
+      likeRepliesSchema: {
+        type: "object",
+        properties: {
+          repliesId: {
+            type: "integer",
+          },
+        },
+      },
       followSchema: {
         type: "object",
         properties: {

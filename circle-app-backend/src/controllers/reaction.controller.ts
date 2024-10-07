@@ -90,8 +90,6 @@ class ReactionController {
         res.json(like);
       }
     } catch (error) {
-      console.log(error);
-
       res.status(500).json(error);
     }
   }

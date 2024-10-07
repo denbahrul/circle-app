@@ -53,7 +53,19 @@ export default function ThreadDetailPage() {
       />
       <FormReply threadId={threadId} placeholder="Type your reply!" buttonTitle="Reply" />
       {threads.replies.map((reply) => {
-        return <RepliesItem authorId={reply.authorId} id={reply.id} profilePhoto={reply.author.profilePhoto} fullName={reply.author.fullname} userName={reply.author.username} postContent={reply.content} like={10} postImage={reply.image} />;
+        return (
+          <RepliesItem
+            authorId={reply.authorId}
+            id={reply.id}
+            profilePhoto={reply.author.profilePhoto}
+            fullName={reply.author.fullname}
+            userName={reply.author.username}
+            postContent={reply.content}
+            like={reply.like_replies.length}
+            isLike={reply.isLike}
+            postImage={reply.image}
+          />
+        );
       })}
     </Box>
   );

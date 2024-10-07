@@ -45,7 +45,7 @@ class ThreadServies {
       include: {
         author: true,
         replies: {
-          include: { author: true },
+          include: { author: true, like_replies: true },
         },
         like: true,
       },
@@ -61,10 +61,15 @@ class ThreadServies {
 
     const isLike = thread.like.some((like) => like.authorId === userId);
 
+    const repliesIsLike = thread.replies.map((reply) => {
+      const isRepliesLike = reply.like_replies.some((likeReplies) => likeReplies.authorId === userId);
+      return { ...reply, isLike: isRepliesLike };
+    });
+
     return {
       status: "success",
       message: "Thread retrived",
-      data: { ...thread, isLike },
+      data: { ...thread, isLike, replies: repliesIsLike },
     };
   }
 

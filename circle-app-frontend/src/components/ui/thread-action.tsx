@@ -54,13 +54,43 @@ export function PostAction({ like, reply, id, isLike }: { like: number; reply: n
   );
 }
 
-export function RepliesAction({ like }: { like: number }) {
+export function RepliesAction({ like, isLike, id }: { like: number; id: number; isLike: boolean }) {
+  const [isThreadLike, setIsThreadLike] = useState<boolean>(isLike);
+  const [likeCount, setLikeCount] = useState<number>(like);
+
+  async function onLike(event: React.MouseEvent<HTMLDivElement>, repliesId: number) {
+    event.preventDefault();
+
+    try {
+      // let response;
+      await apiV1.post("/replies/like", { repliesId });
+      if (isThreadLike) {
+        setIsThreadLike(false);
+        setLikeCount(likeCount - 1);
+      } else {
+        setIsThreadLike(true);
+        setLikeCount(likeCount + 1);
+      }
+      // Swal.fire({
+      //   icon: "success",
+      //   title: response.data.message,
+      //   showConfirmButton: false,
+      //   background: "#1D1D1D",
+      //   color: "#fff",
+      //   iconColor: "#04A51E",
+      //   timer: 800,
+      // });
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
   return (
     <Flex gap={4} marginY={1} alignItems={"center"}>
-      <Flex gap={2} alignItems={"center"}>
-        <Image src="/heart.svg" alt="like" height={"18px"} />
+      <Flex gap={2} alignItems={"center"} onClick={(event) => onLike(event, id)}>
+        <Image src={isThreadLike ? "/heart-red.svg" : "/heart.svg"} alt="like" height={"18px"} />
         <Text fontSize={"14px"} fontWeight={400} lineHeight={"20px"} color={"brand.fontSecondary"}>
-          {like}
+          {likeCount}
         </Text>
       </Flex>
     </Flex>

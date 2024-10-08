@@ -69,7 +69,7 @@ class UserServices {
   //   return await prisma.user.create({ data });
   // }
 
-  async updateUser(data: UpdateUSerDTO): Promise<SuccessResponse<User | null>> {
+  async updateUser(data: UpdateUSerDTO): Promise<SuccessResponse<Pick<User, "profilePhoto" | "bio" | "fullname" | "username"> | null>> {
     const user = await prisma.user.findUnique({
       where: {
         id: data.id,
@@ -100,7 +100,7 @@ class UserServices {
       user.profilePhoto = data.profilePhoto;
     }
 
-    await prisma.user.update({
+    const update = await prisma.user.update({
       data: data,
       where: { id: data.id },
     });
@@ -108,6 +108,7 @@ class UserServices {
     return {
       status: "success",
       message: "Profile successfully edited",
+      data: { profilePhoto: update.profilePhoto, fullname: update.fullname, username: update.username, bio: update.bio },
     };
   }
 }

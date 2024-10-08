@@ -13,14 +13,14 @@ import DetailPost from "./pages/main/detail-post";
 import Follows from "./pages/main/follows";
 import Home from "./pages/main/home";
 import MyProfile from "./pages/main/my-profile";
-import Search from "./pages/main/search";
 import Profile from "./pages/main/others-profile";
+import Search from "./pages/main/search";
 
 export default function RouterApp() {
   const dispatch = useAppDispatch();
   useEffect(() => {
     dispatch(getUserLogged());
-  });
+  }, []);
 
   const router = createBrowserRouter([
     {

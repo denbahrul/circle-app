@@ -1,14 +1,14 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import axios from "axios";
+import Cookies from "js-cookie";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
+import { useAppDispatch } from "../../../hooks/use-store";
+import { apiV1 } from "../../../libs/api";
+import { getUserLogged } from "../auth-slice";
 import { LoginFormInput, loginSchema } from "../schemas/login";
 import { LoginRequestDTO, LoginResponseDTO } from "../types/auth.dto";
-import Cookies from "js-cookie";
-import { apiV1 } from "../../../libs/api";
-import { useAppDispatch } from "../../../hooks/use-store";
-import { getUserLogged, setUser } from "../auth-slice";
-import Swal from "sweetalert2";
 
 export function useLoginForm() {
   const {

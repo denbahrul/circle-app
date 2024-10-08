@@ -26,6 +26,12 @@ const authSlice = createSlice({
     setUser: (state, action: PayloadAction<UserStoreDTO>) => {
       state.entities = action.payload;
     },
+    updateProfile: (state, action: PayloadAction<Pick<UserStoreDTO, "profilePhoto" | "fullname" | "username" | "bio">>) => {
+      state.entities = {
+        ...state.entities,
+        ...action.payload,
+      };
+    },
     removeUser() {
       return initialState;
     },
@@ -44,5 +50,5 @@ const authSlice = createSlice({
   },
 });
 
-export const { setUser, removeUser } = authSlice.actions;
+export const { setUser, removeUser, updateProfile } = authSlice.actions;
 export default authSlice.reducer;

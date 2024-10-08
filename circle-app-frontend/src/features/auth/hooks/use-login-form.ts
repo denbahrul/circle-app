@@ -7,7 +7,7 @@ import { LoginRequestDTO, LoginResponseDTO } from "../types/auth.dto";
 import Cookies from "js-cookie";
 import { apiV1 } from "../../../libs/api";
 import { useAppDispatch } from "../../../hooks/use-store";
-import { setUser } from "../auth-slice";
+import { getUserLogged, setUser } from "../auth-slice";
 import Swal from "sweetalert2";
 
 export function useLoginForm() {
@@ -26,9 +26,10 @@ export function useLoginForm() {
     try {
       const response = await apiV1.post<null, { data: LoginResponseDTO }, LoginRequestDTO>("/auth/login", { email, password });
 
-      const { accessToken, user } = response.data.data;
+      const { accessToken } = response.data.data;
 
       Cookies.set("token", accessToken, { expires: 2 });
+      // console.log("Token stored in cookies: ", Cookies.get("token"));
 
       Swal.fire({
         icon: "success",
@@ -40,7 +41,7 @@ export function useLoginForm() {
         timer: 1000,
       });
 
-      dispatch(setUser(user));
+      dispatch(getUserLogged());
 
       navigate("/");
     } catch (error) {

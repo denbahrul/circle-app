@@ -1,7 +1,7 @@
 import { Box, Flex, Spinner, Text } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import { HiOutlineArrowLeft } from "react-icons/hi";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { ThreadEntity } from "../../../entities/thread";
 import { apiV1 } from "../../../libs/api";
 import { ThreadDetailResponseDTO } from "../types/thread-detail.dto";
@@ -10,6 +10,7 @@ import RepliesItem from "./replies-item";
 import FormReply from "./reply-form";
 
 export default function ThreadDetailPage() {
+  const navigate = useNavigate();
   const [threads, setThread] = useState<ThreadEntity>();
   let { id } = useParams();
   const threadId = Number(id);
@@ -34,7 +35,7 @@ export default function ThreadDetailPage() {
   return (
     <Box>
       <Flex mt={4} padding={4} gap={3} alignItems={"center"}>
-        <HiOutlineArrowLeft size={26} />
+        <HiOutlineArrowLeft size={26} onClick={() => navigate(-1)} cursor={"pointer"} />
         <Text fontSize={"28px"} fontWeight={700} lineHeight={"28px"}>
           Status
         </Text>

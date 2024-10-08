@@ -32,7 +32,7 @@ export default function EditProfileModal({ thumbnailH, fullname, profilePhoto }:
                 <Input {...register("profilePhoto")} onChange={(e) => onImageChage(e, register("profilePhoto").onChange)} id="uploadPhoto" type="file" variant={"unstyled"} border={"none"} hidden />
                 <Avatar src={image} name={fullname} border={"solid 4px"} borderColor={"brand.backgroundCircle"} height={"80px"} width={"80px"} rounded={"full"} objectFit="cover" />
                 <label htmlFor="uploadPhoto">
-                  <Image src="/edit-image.svg" alt="edit image" position={"absolute"} top={"20px"} left={"20px"} objectFit="cover" />
+                  <Image src="/edit-image.svg" alt="edit image" cursor={"pointer"} position={"absolute"} top={"20px"} left={"20px"} objectFit="cover" />
                 </label>
               </Box>
             </Box>

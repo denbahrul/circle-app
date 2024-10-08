@@ -22,6 +22,7 @@ class ThreadServies {
         replies: true,
         like: true,
       },
+      orderBy: [{ createdAt: "desc" }],
     });
 
     const threadWithIsLike = threads.map((thread) => {

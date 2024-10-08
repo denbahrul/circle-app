@@ -15,6 +15,7 @@ export type EditProfileRequestDTO = Pick<UserEntity, "fullname" | "username" | "
 export type EditProfileResponseDTO = {
   status: string;
   message: string;
+  data: EditProfileRequestDTO;
 };
 
 export type UserStoreDTO = Omit<UserEntity, "password">;

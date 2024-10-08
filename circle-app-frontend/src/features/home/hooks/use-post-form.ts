@@ -5,8 +5,11 @@ import Swal from "sweetalert2";
 import { apiV1 } from "../../../libs/api";
 import { PostThradInput, postThreadSchema } from "../schemas/post-thread";
 import { ThreadPostResponseDTO } from "../types/thread.dto";
+import { useAppDispatch } from "../../../hooks/use-store";
+import { getAllThreads } from "../threads-slice";
 
 export function usePostThread() {
+  const dispatch = useAppDispatch();
   const {
     register,
     handleSubmit,
@@ -24,6 +27,7 @@ export function usePostThread() {
 
       const response = await apiV1.post<null, { data: ThreadPostResponseDTO }>("/threads", formData);
       // alert(response.data.message);
+      dispatch(getAllThreads());
       Swal.fire({
         icon: "success",
         title: response.data.message,

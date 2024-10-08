@@ -32,6 +32,9 @@ const authSlice = createSlice({
         ...action.payload,
       };
     },
+    // updateFollow: (state) => {
+    //   state.entities.following
+    // },
     removeUser() {
       return initialState;
     },

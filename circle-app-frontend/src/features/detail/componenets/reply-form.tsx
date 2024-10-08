@@ -2,7 +2,7 @@ import { Box, Button, Flex, Image, Input, FormControl, Spinner, Text, Avatar } f
 
 import { useAppSelector } from "../../../hooks/use-store";
 import { useState } from "react";
-import { usePostReply } from "../../home/hooks/use-post-reply";
+import { usePostReply } from "../hooks/use-post-reply";
 
 export default function FormReply({ placeholder, buttonTitle, threadId }: { placeholder: string; buttonTitle: string; threadId: number }) {
   const { register, handleSubmit, watch, errors, isSubmitting, onSubmit } = usePostReply({ threadId });

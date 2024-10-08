@@ -3,10 +3,13 @@ import axios from "axios";
 import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
 import { apiV1 } from "../../../libs/api";
-import { PostReplyInput, postReplySchema } from "../schemas/post-reply";
-import { ReplyPostResponseDTO } from "../types/thread.dto";
+import { PostReplyInput, postReplySchema } from "../../home/schemas/post-reply";
+import { ReplyPostResponseDTO } from "../../home/types/thread.dto";
+import { useAppDispatch } from "../../../hooks/use-store";
+import { getDetailThreads } from "../detail-slice";
 
 export function usePostReply({ threadId }: { threadId: number }) {
+  const dispatch = useAppDispatch();
   const {
     register,
     handleSubmit,
@@ -33,6 +36,7 @@ export function usePostReply({ threadId }: { threadId: number }) {
         iconColor: "#04A51E",
         timer: 1500,
       });
+      dispatch(getDetailThreads(threadId));
     } catch (error) {
       if (axios.isAxiosError(error) && error.response) {
         console.error(error.response.data); // Log response error dari server

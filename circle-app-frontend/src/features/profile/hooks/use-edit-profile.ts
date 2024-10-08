@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
 import { useAppDispatch, useAppSelector } from "../../../hooks/use-store";
 import { apiV1 } from "../../../libs/api";
-import { getUserLogged } from "../../auth/auth-slice";
+import { updateProfile } from "../../auth/auth-slice";
 import { EditProfileFormInput, editProfileSchema } from "../schema/edit";
 import { EditProfileResponseDTO } from "../types/profile.dto";
 
@@ -37,6 +37,8 @@ export default function useEditProfile() {
       }
 
       const response = await apiV1.patch<null, { data: EditProfileResponseDTO }>("/users", formData);
+      const update = response.data.data;
+
       Swal.fire({
         icon: "success",
         title: response.data.message,
@@ -47,7 +49,14 @@ export default function useEditProfile() {
         timer: 1000,
       });
 
-      dispatch(getUserLogged());
+      dispatch(
+        updateProfile({
+          profilePhoto: update.profilePhoto,
+          fullname: update.fullname,
+          username: update.username,
+          bio: update.bio,
+        })
+      );
 
       // const updateData = response.data.data;
 

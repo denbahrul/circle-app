@@ -1,8 +1,9 @@
 import { Avatar, Flex, Image, Text } from "@chakra-ui/react";
 import { Link, useNavigate } from "react-router-dom";
 import { Thread } from "../../features/home/types/thread.dto";
+import formatDate from "../../libs/format-date";
 
-export default function PostContent({ profilePhoto, fullName, userName, postContent, postImage, children, authorId, id }: Omit<Thread, "like" | "reply"> & { children: React.ReactNode; authorId: number }) {
+export default function PostContent({ profilePhoto, fullName, userName, postContent, postImage, children, authorId, id, createdAt }: Omit<Thread, "like" | "reply"> & { children: React.ReactNode; authorId: number }) {
   const navigate = useNavigate();
   const handleClick = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     event.preventDefault();
@@ -24,7 +25,7 @@ export default function PostContent({ profilePhoto, fullName, userName, postCont
               •
             </Text>
             <Text fontSize={"14px"} fontWeight={400} lineHeight={"16px"} color={"brand.fontSecondary"}>
-              4h
+              {formatDate(createdAt)}
             </Text>
           </Flex>
         </Link>

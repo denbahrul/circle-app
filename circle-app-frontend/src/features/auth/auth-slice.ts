@@ -32,9 +32,12 @@ const authSlice = createSlice({
         ...action.payload,
       };
     },
-    // updateFollow: (state) => {
-    //   state.entities.following
-    // },
+    plusFollow: (state) => {
+      state.entities._count.followers = state.entities._count.followers + 1;
+    },
+    minFollow: (state) => {
+      state.entities._count.followers = state.entities._count.followers - 1;
+    },
     removeUser() {
       return initialState;
     },
@@ -53,5 +56,5 @@ const authSlice = createSlice({
   },
 });
 
-export const { setUser, removeUser, updateProfile } = authSlice.actions;
+export const { setUser, removeUser, updateProfile, plusFollow, minFollow } = authSlice.actions;
 export default authSlice.reducer;

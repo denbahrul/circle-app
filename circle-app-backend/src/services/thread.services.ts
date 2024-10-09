@@ -47,6 +47,9 @@ class ThreadServies {
         author: true,
         replies: {
           include: { author: true, like_replies: true },
+          orderBy: {
+            createdAt: "desc",
+          },
         },
         like: true,
       },

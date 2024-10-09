@@ -23,6 +23,7 @@ export default function PostList({ threads }: { threads: ThreadEntity[] }) {
       {threads.map((thread) => {
         return (
           <PostItem
+            createdAt={thread.createdAt}
             authorId={thread.authorId}
             isLike={thread.isLike}
             key={thread.id}

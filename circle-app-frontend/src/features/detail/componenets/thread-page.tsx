@@ -42,6 +42,7 @@ export default function ThreadDetailPage() {
       {loading == "succeeded" ? (
         <>
           <ThreadDetail
+            createdAt={threads.createdAt}
             authorId={threads.authorId}
             id={threads.id}
             profilePhoto={threads?.author.profilePhoto}
@@ -57,6 +58,7 @@ export default function ThreadDetailPage() {
           {threads.replies.map((reply) => {
             return (
               <RepliesItem
+                createdAt={threads.createdAt}
                 key={reply.id}
                 authorId={reply.authorId}
                 id={reply.id}

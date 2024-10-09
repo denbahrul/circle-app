@@ -44,8 +44,8 @@ export default function RightBar() {
             fullname={user.fullname}
             username={user.username}
             bio={user.bio}
-            following={user.followers.length}
-            followers={user.following.length}
+            followers={user._count.following}
+            following={user._count.followers}
             thumbnailH="100px"
           />
         </Box>
@@ -61,9 +61,12 @@ export default function RightBar() {
             </Stack>
           ) : (
             <Flex direction={"column"} gap={4}>
-              {others.slice(0, 5).map((other) => {
-                return <OthersAccountItem id={other.id} key={other.id} image={other.profilePhoto} fullName={other.fullname} userName={other.username} isFollow={other.isFollow} />;
-              })}
+              {others
+                .sort(() => Math.random() - 0.5)
+                .slice(0, 5)
+                .map((other) => {
+                  return <OthersAccountItem id={other.id} key={other.id} image={other.profilePhoto} fullName={other.fullname} userName={other.username} isFollow={other.isFollow} />;
+                })}
             </Flex>
           )}
         </Box>

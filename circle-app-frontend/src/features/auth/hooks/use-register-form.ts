@@ -1,14 +1,14 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import axios from "axios";
+import Cookies from "js-cookie";
 import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
+import { useAppDispatch } from "../../../hooks/use-store";
+import { apiV1 } from "../../../libs/api";
+import { getUserLogged } from "../auth-slice";
 import { RegisterFormInput, registerSchema } from "../schemas/register";
 import { RegisterRequestDTO, RegisterResponseDTO } from "../types/auth.dto";
-import { useNavigate } from "react-router-dom";
-import Cookies from "js-cookie";
-import { apiV1 } from "../../../libs/api";
-import { useAppDispatch } from "../../../hooks/use-store";
-import { setUser } from "../auth-slice";
-import Swal from "sweetalert2";
 
 export function useRegisterForm() {
   const {
@@ -34,11 +34,11 @@ export function useRegisterForm() {
         iconColor: "#04A51E",
         timer: 1000,
       });
-      const { accessToken, user } = response.data.data;
+      const { accessToken } = response.data.data;
 
       Cookies.set("token", accessToken, { expires: 2 });
 
-      dispatch(setUser(user));
+      dispatch(getUserLogged());
 
       navigate("/");
     } catch (error) {

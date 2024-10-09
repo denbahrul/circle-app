@@ -9,6 +9,7 @@ export type Thread = {
   postImage?: string;
   like: number;
   reply: number;
+  createdAt: Date;
 };
 
 export type ThreadResponseDTO = {

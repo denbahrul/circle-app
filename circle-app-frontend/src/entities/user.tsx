@@ -14,4 +14,8 @@ export interface UserEntity {
   followers: FollowEntitiy[];
   threads: ThreadEntity[];
   isFollow: boolean;
+  _count: {
+    following: number;
+    followers: number;
+  };
 }

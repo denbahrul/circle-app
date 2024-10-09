@@ -45,6 +45,7 @@ export default function HomePage() {
       ) : (
         threads.map((threads) => (
           <PostItem
+            createdAt={threads.createdAt}
             authorId={threads.authorId}
             id={threads.id}
             key={threads.id}

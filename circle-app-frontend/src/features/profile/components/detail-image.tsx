@@ -56,6 +56,7 @@ export default function DetailImagePage() {
       {isContentOpen && (
         <Box width={"30%"} id="imageCard" borderLeft={"solid 1px"} borderColor={"brand.borderAbu"}>
           <PostDetail
+            createdAt={threads.createdAt}
             isLike={threads.isLike}
             like={threads.like.length}
             reply={threads.replies.length}
@@ -70,6 +71,7 @@ export default function DetailImagePage() {
           {threads.replies.map((reply) => {
             return (
               <RepliesItem
+                createdAt={reply.createdAt}
                 isLike={reply.isLike}
                 authorId={reply.authorId}
                 id={reply.id}

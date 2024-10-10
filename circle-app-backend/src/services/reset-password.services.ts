@@ -9,7 +9,7 @@ import { SuccessResponse } from "../types/success-respons";
 const prisma = new PrismaClient();
 
 class ResetPasswordServices {
-  async sendEmail(email: string) {
+  async sendEmail(email: string): Promise<SuccessResponse<string>> {
     const user = await prisma.user.findUnique({
       where: {
         email,
@@ -51,7 +51,7 @@ class ResetPasswordServices {
       text: `Click the following link to reset your password : http://localhost:5173/reset-password/${token}`,
     };
 
-    transporter.sendMail(mailOption, (error, info) => {
+    const response = transporter.sendMail(mailOption, (error, info) => {
       if (error) {
         console.log(error);
         throw {
@@ -63,6 +63,11 @@ class ResetPasswordServices {
         return "Check your email for instructions on resetting your password";
       }
     });
+
+    return {
+      status: "success",
+      message: "Check your email for instructions on resetting your password",
+    };
   }
 
   async resetPassword(token: string, newPassword: string): Promise<SuccessResponse<string>> {

@@ -1,5 +1,5 @@
 import { Box, SkeletonCircle, SkeletonText, Text } from "@chakra-ui/react";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import PostItem from "../../../components/ui/thread-item";
 import { useAppDispatch, useAppSelector } from "../../../hooks/use-store";
 import { getAllThreads } from "../threads-slice";
@@ -8,6 +8,7 @@ import CreatePost from "./create-post";
 export default function HomePage() {
   // const [threads, setThread] = useState<ThreadEntity[]>([]);
   // const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [refresh, setRefresh] = useState("none");
   const dispatch = useAppDispatch();
   const thradsState = useAppSelector((state) => state.threads);
 
@@ -27,7 +28,12 @@ export default function HomePage() {
   // }
 
   useEffect(() => {
-    dispatch(getAllThreads());
+    if (threads.length === 0) {
+      dispatch(getAllThreads());
+    }
+    setInterval(() => {
+      setRefresh("block");
+    }, 5000);
   }, []);
 
   return (
@@ -36,8 +42,23 @@ export default function HomePage() {
         Home
       </Text>
       <CreatePost />
+      <Box
+        display={refresh}
+        cursor={"pointer"}
+        onClick={() => {
+          dispatch(getAllThreads());
+          setRefresh("none");
+        }}
+        padding={3}
+        borderBottom={"solid 1px"}
+        borderColor={"brand.borderAbu"}
+      >
+        <Text color={"brand.green"} textAlign={"center"}>
+          Refresh Threads
+        </Text>
+      </Box>
 
-      {Loading == "pending" ? (
+      {Loading == "pending" || threads.length == 0 ? (
         <Box padding="6">
           <SkeletonCircle size="10" />
           <SkeletonText mt="4" noOfLines={4} spacing="4" skeletonHeight="3" />

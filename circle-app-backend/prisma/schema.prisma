@@ -36,6 +36,8 @@ model User {
 
   like_replies LikeReply[]
 
+  passwordResetToken PasswordResetToken[]
+
   createdAt DateTime @default(now())
   updateAt DateTime @default(now()) @updatedAt
 
@@ -127,4 +129,15 @@ model LikeReply {
 
   @@map("like_replies")
   @@unique([authorId, repliesId])
+}
+
+model PasswordResetToken {
+  id Int @id @default(autoincrement())
+  token String @unique
+  userId Int
+  user User @relation(fields: [userId], references: [id])
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+
+  @@map("password_reset_token")
 }

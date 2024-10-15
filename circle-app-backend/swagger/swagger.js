@@ -8,7 +8,7 @@ const doc = {
     title: "CIRCLE API",
     description: "API Documentation for Circle App",
   },
-  host: "localhost:3000",
+  servers: [{ url: "localhost:3000/" }, { url: "https://circle-app-be-stagging.vercel.app/" }],
   components: {
     securitySchemes: {
       bearerAuth: {

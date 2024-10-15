@@ -39,7 +39,7 @@ export default function RouterApp() {
           element: <ForgotPassword />,
         },
         {
-          path: "/reset-password",
+          path: "/reset-password/:token",
           element: <ResetPassword />,
         },
       ],

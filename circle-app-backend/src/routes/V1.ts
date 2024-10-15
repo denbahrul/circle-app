@@ -6,6 +6,7 @@ import { authentication } from "../middlewares/authentication";
 import reactionController from "../controllers/reaction.controller";
 import followController from "../controllers/follow.controller";
 import { upload } from "../middlewares/upload-file";
+import resetPasswordControllers from "../controllers/reset-password.controllers";
 
 export const routerV1 = express.Router();
 
@@ -13,6 +14,9 @@ export const routerV1 = express.Router();
 routerV1.post("/auth/login", authControllers.login);
 routerV1.post("/auth/register", authControllers.register);
 routerV1.get("/user/me", authentication, authControllers.getUserLogged);
+
+routerV1.post("/forgot-password", resetPasswordControllers.forgotPassword);
+routerV1.post("/reset-password/:token", resetPasswordControllers.resetPassword);
 
 // USER
 routerV1.get("/users", authentication, UserController.findAll);

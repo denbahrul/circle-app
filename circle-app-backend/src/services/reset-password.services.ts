@@ -48,7 +48,23 @@ class ResetPasswordServices {
       from: process.env.RESET_PASSWORD_EMAIL,
       to: email,
       subject: "Circle App - Password reset",
-      text: `Click the following link to reset your password : http://localhost:5173/reset-password/${token}`,
+      html: `
+      <html lang="en">
+        <body style="font-family: Arial, sans-serif; background-color: #f4f4f4; margin: 0; padding: 0">
+          <div style="max-width: 600px; margin: 20px auto; background-color: #ffffff; padding: 20px; border-radius: 8px; text-align: center">
+            <h2 style="font-size: 24px; color: #333333">Forget password ?</h2>
+            <p style="font-size: 16px; color: #555555">If you've lost your password or wish to reset it, use the link below to get started:</p>
+            <a href="http://localhost:5173/reset-password/${token}" style="color: #3498db; text-decoration: none; display: block; margin: 10px 0">http://localhost:5173/reset-password/</a>
+            <p style="font-size: 16px; color: #555555">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation.
+            </p>
+            <a href="http://localhost:5173/reset-password/${token}" style="display: inline-block; margin-top: 20px; padding: 10px 20px; background-color: #04a51e; color: #ffffff; text-decoration: none; font-size: 16px; border-radius: 5px"
+              >Reset Your Password</a
+            >
+          </div>
+        </body>
+      </html>
+      `,
     };
 
     const response = transporter.sendMail(mailOption, (error, info) => {

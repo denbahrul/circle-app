@@ -4,6 +4,7 @@ import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import { customError } from "../types/custom-error";
 import { SuccessResponse } from "../types/success-respons";
+import UserRepositories from "../repositories/user";
 
 const prisma = new PrismaClient();
 
@@ -24,10 +25,21 @@ class AuthServices {
 
     const saltRounds = 10;
     const hashedPassword = await bcrypt.hash(data.password, saltRounds);
+    let generateUsername;
+    let existedUsername;
+
+    do {
+      const randomMath = Math.floor(Math.random() * 1000);
+      const emailSplit = data.email.split("@")[0];
+      generateUsername = `${emailSplit}${randomMath}`;
+
+      existedUsername = await UserRepositories.getUserByUsername(generateUsername);
+    } while (existedUsername);
 
     const { password, ...result } = await prisma.user.create({
       data: {
         ...data,
+        username: generateUsername,
         password: hashedPassword,
       },
     });

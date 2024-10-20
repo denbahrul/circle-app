@@ -19,7 +19,6 @@ export default function useEditProfile() {
   } = useForm<EditProfileFormInput>({
     resolver: zodResolver(editProfileSchema),
     defaultValues: {
-      profilePhoto: user.profilePhoto,
       fullname: user.fullname,
       username: user.username,
       bio: user.bio,
@@ -38,6 +37,8 @@ export default function useEditProfile() {
 
       const response = await apiV1.patch<null, { data: EditProfileResponseDTO }>("/users", formData);
       const update = response.data.data;
+      console.log("profilePhoto", data.profilePhoto);
+      console.log("form data", formData.values);
 
       Swal.fire({
         icon: "success",

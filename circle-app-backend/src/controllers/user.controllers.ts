@@ -61,18 +61,16 @@ class UserController {
     try {
       const id = (req as any).user.id;
       const fileUpload = req.file;
-      let imageUrl = null;
-
-      if (fileUpload) {
-        const image = await cloudinaryServices.upload(req.file as Express.Multer.File);
-        imageUrl = image.secure_url;
-      }
 
       const value = {
         ...req.body,
-        profilePhoto: imageUrl,
         id: id,
       };
+
+      if (fileUpload) {
+        const image = await cloudinaryServices.upload(req.file as Express.Multer.File);
+        value.profilePhoto = image.secure_url; // add properties on value object
+      }
 
       const user = await UserServices.updateUser(value);
       res.json(user);

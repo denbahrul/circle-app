@@ -10,6 +10,10 @@ class UserRepositories {
     });
   }
 
+  async getSuggestedUser() {
+    return prisma.$queryRaw`SELECT * FROM user ORDER BY RANDOM() LIMIT 5`;
+  }
+
   async getUserByUsername(username: string) {
     return prisma.user.findUnique({
       where: {

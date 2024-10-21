@@ -43,7 +43,7 @@ export default function ProfilePage() {
         <ProfileHeading
           id={Number(id)}
           isMyProfile={false}
-          buttonTitle={user.isFollow ? "Unfollow" : "Follow"}
+          // buttonTitle={user.isFollow ? "Unfollow" : "Follow"}
           isFollow={user.isFollow}
           profilePhoto={user.profilePhoto}
           fullname={user.fullname}

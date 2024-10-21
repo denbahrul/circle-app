@@ -79,7 +79,7 @@ export default function DetailImagePage() {
                 fullName={reply.author.fullname}
                 userName={reply.author.username}
                 postContent={reply.content}
-                like={10}
+                like={reply.like_replies.length}
                 postImage={reply.image}
               />
             );

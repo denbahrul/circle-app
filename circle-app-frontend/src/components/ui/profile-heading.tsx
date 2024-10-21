@@ -1,26 +1,19 @@
 import { Avatar, Box, Button, Flex, Image, Modal, ModalOverlay, Text, useDisclosure } from "@chakra-ui/react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 import { UserProfileDTO } from "../../features/profile/types/profile.dto";
 import { apiV1 } from "../../libs/api";
 import EditProfileModal from "./profile-modal";
 
-export default function ProfileHeading({
-  id,
-  thumbnailH,
-  fullname,
-  username,
-  bio,
-  profilePhoto,
-  following,
-  followers,
-  isFollow,
-  isMyProfile,
-}: UserProfileDTO & { thumbnailH: string; buttonTitle: string; isFollow: boolean; isMyProfile?: boolean }) {
+export default function ProfileHeading({ id, thumbnailH, fullname, username, bio, profilePhoto, following, followers, isFollow, isMyProfile }: UserProfileDTO & { thumbnailH: string; isFollow: boolean; isMyProfile?: boolean }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [isFollowUser, setIsFollowUser] = useState<boolean>(isFollow);
   console.log("isFollow", isFollow);
   console.log("isFollowUser", isFollowUser);
+
+  useEffect(() => {
+    setIsFollowUser(isFollow);
+  }, [username]);
 
   async function onFollow(followingId: number) {
     try {

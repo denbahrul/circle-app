@@ -1,18 +1,14 @@
 import { PrismaClient, User } from "@prisma/client";
 import { UpdateUSerDTO } from "../dto/user.dto";
-import { error } from "console";
 import { customError } from "../types/custom-error";
 import { SuccessResponse } from "../types/success-respons";
+import UserRepositories from "../repositories/user";
 
 const prisma = new PrismaClient();
 
 class UserServices {
   async getAllUsers(userId: number): Promise<User[]> {
-    const users = await prisma.user.findMany({
-      include: {
-        followers: true,
-      },
-    });
+    const users = await UserRepositories.getAllUser();
 
     const followedUsers = await prisma.follow.findMany({
       where: { followersId: userId },
@@ -39,27 +35,7 @@ class UserServices {
   }
 
   async getUserById(userId: number): Promise<User | null> {
-    const user = await prisma.user.findUnique({
-      where: { id: userId },
-      include: {
-        _count: {
-          select: {
-            following: true,
-            followers: true,
-          },
-        },
-        followers: true,
-        following: true,
-
-        threads: {
-          include: {
-            author: true,
-            like: true,
-            replies: true,
-          },
-        },
-      },
-    });
+    const user = await UserRepositories.findUserById(userId);
 
     if (!user) {
       throw {
@@ -77,11 +53,7 @@ class UserServices {
   // }
 
   async updateUser(data: UpdateUSerDTO): Promise<SuccessResponse<Pick<User, "profilePhoto" | "bio" | "fullname" | "username"> | null>> {
-    const user = await prisma.user.findUnique({
-      where: {
-        id: data.id,
-      },
-    });
+    const user = await UserRepositories.findUserById(data.id);
 
     if (!user) {
       throw {
@@ -91,26 +63,7 @@ class UserServices {
       } as customError;
     }
 
-    if (data.fullname) {
-      user.fullname = data.fullname;
-    }
-
-    if (data.username) {
-      user.username = data.username;
-    }
-
-    if (data.bio) {
-      user.bio = data.bio;
-    }
-
-    if (data.profilePhoto) {
-      user.profilePhoto = data.profilePhoto;
-    }
-
-    const update = await prisma.user.update({
-      data: data,
-      where: { id: data.id },
-    });
+    const update = await UserRepositories.updateUser(data);
 
     return {
       status: "success",

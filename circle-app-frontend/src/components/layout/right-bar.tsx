@@ -39,7 +39,7 @@ export default function RightBar() {
             id={user.id}
             isFollow={user.isFollow}
             isMyProfile={true}
-            buttonTitle={"Edit Profile"}
+            // buttonTitle={"Edit Profile"}
             profilePhoto={user.profilePhoto}
             fullname={user.fullname}
             username={user.username}

@@ -24,6 +24,7 @@ model User {
   username      String? @unique
   bio           String?
   profilePhoto  String?
+  thumbnail     String?
 
   role RoleEnum @default(MEMBER)
 

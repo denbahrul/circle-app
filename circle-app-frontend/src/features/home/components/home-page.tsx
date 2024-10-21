@@ -6,8 +6,6 @@ import { getAllThreads } from "../threads-slice";
 import CreatePost from "./create-post";
 
 export default function HomePage() {
-  // const [threads, setThread] = useState<ThreadEntity[]>([]);
-  // const [isLoading, setIsLoading] = useState<boolean>(true);
   const [refresh, setRefresh] = useState("none");
   const dispatch = useAppDispatch();
   const thradsState = useAppSelector((state) => state.threads);
@@ -15,25 +13,12 @@ export default function HomePage() {
   const threads = thradsState.entities;
   const Loading = thradsState.loading;
 
-  // async function getThreads() {
-  //   try {
-  //     const response = await apiV1.get<null, { data: ThreadResponseDTO }>("/threads");
-  //     const data = response.data.data;
-  //     setThread(data);
-  //   } catch (errors) {
-  //     console.error(errors);
-  //   } finally {
-  //     setIsLoading(false);
-  //   }
-  // }
-
   useEffect(() => {
-    if (threads.length === 0) {
-      dispatch(getAllThreads());
-    }
+    dispatch(getAllThreads());
+
     setInterval(() => {
       setRefresh("block");
-    }, 5000);
+    }, 20000);
   }, []);
 
   return (
